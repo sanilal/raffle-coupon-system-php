@@ -9,13 +9,21 @@
 </head>
 <body>
     <div class="outer-wraper">
-    <div class="select-lang text-black fontsize15 d-flex flex-column">
-                <h2 class="text-medium text-center text-white">
+        <div class="bg-wraper home">
+            <div class="header">
+                <img src="assets/images/home-bg.webp" alt="Renovate your kitchen with ALYOUM Chicken" class="img-fluid">
+                <div class="notice">
+                <img src="assets/images/every20.svg" alt="Every 20 SAR spent earns you one extra entry in the draw" class="img-fluid">
+                </div>
+            </div>
+        <div class="select-lang text-black fontsize15 d-flex flex-column">
+        <h2 class="arabic text-medium text-center text-white">
+                اختر لغتك المفضلة
+                </h2>        
+        <h2 class="text-medium text-center text-white almarai-bold">
                 SELECT YOUR LANGUAGE
                 </h2>
-                <h2 class="arabic text-medium text-center text-white">
-                اختر لغتك المفضلة
-                </h2>
+                
                 <a href="./en/" class="">
                     <span>
                     ENGLISH
@@ -32,6 +40,8 @@
                     <p class="termsClick text-white">Terms & Conditions Apply </p>
                 </div>
             </div>
+        </div>
+
     </div>
 </body>
 </html>

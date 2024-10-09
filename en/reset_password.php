@@ -27,10 +27,34 @@ if (isset($_GET['token'])) {
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
-<form method="post" action="">
-    <input type="password" name="password" placeholder="New Password" required>
-    <button type="submit">Reset Password</button>
-</form>
+<body class="signin">
+<div class="outer-wraper">
+    <div class="logoheader">
+        <img src="../assets/images/alyoum-logo.png" alt="Alyoum Logo" class="img-fluid">
+    </div>
+    <div class="welcome text-black fontsize15 d-flex flex-column">
+        <div class="renovate">
+                <img src="../assets/images/renovate-your-kitchen-inner-en.png" alt="Renovate your kitchen with Alyoum Chicken">
+               </div>
+                <div class="signin-wraper">
+                <div class="signinform">
+                    <h2>Reset Your Password</h2>
+                    <form method="post" action="" name="reset_password" id="reset_password">
+                        <label for="password">New Password
+                        <input type="password" name="password" required>
+                        </label>
+                        <button class="btn btn-primary" type="submit">Reset Password</button>
+                    </form>
+            </div>
+                </div>
+        </div>
+        <div class="signinfooter">
+                <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
+                <div class="termsspl">
+                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                </div>
+            </div>
+
+</div>
 </body>
 </html>

@@ -112,20 +112,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="signin">
 <div class="outer-wraper">
-    <div class="signinform">
-        <form method="post" action="" name="signin_form" id="signin_form">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <div class="login-footer">
-                <label><input type="checkbox" name="remember_me"> Remember Me</label>
-                <a href="forget_password.php">Forget Password</a>
+<div class="logoheader">
+            <img src="../assets/images/alyoum-logo.png" alt="Alyoum Logo" class="img-fluid">
+        </div>
+        <div class="welcome text-black fontsize15 d-flex flex-column">
+        <div class="renovate">
+                <img src="../assets/images/renovate-your-kitchen-inner-en.png" alt="Renovate your kitchen with Alyoum Chicken">
+               </div>
+                <div class="signin-wraper">
+                <div class="signinform">
+                    <h2>Login to your account</h2>
+                <form method="post" action="" name="signin_form" id="signin_form">
+                    <label for="email">Email
+                    <input type="email" name="email" placeholder="Email" required></label>
+                    <label for="password">Password
+                    <input type="password" name="password" placeholder="Password" required></label>
+                    <div class="login-footer">
+                        <div class="remembercheck">
+                            <label><input type="checkbox" name="remember_me">Remember me</label>
+                        </div>
+                        <div class="forgetps">
+                            <a href="forget_password.php">Forgot Password?</a>
+                            <button class="btn btn-primary" type="submit">Login</button>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </form>
             </div>
-            
-            <button type="submit">Login</button>
-        </form>
-    </div>
+                </div>
+        </div>
+        <div class="signinfooter">
+                <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
+                <div class="termsspl">
+                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                </div>
+            </div>
+    
 </div>
 </body>
 </html>

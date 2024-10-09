@@ -1,4 +1,19 @@
 
+:root{
+    --primary:#006a38;
+    --blue:#0067e0;
+    --white:#ffffff;
+    --black: #000000;
+    --text-gray: #4d4d4d;
+    --light-gray: #b3b3b3;
+    --dark-gray: #53534a;
+    --bg-gray: #d9d9d9;
+    --bg-light-gray: #fefefe;
+    --golden: #f8d300;
+    --yellow: #fed900;
+    --rose: #e87070;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,14 +22,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 
-@font-face {
-    font-family: "Myriad Pro";
-    src: url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.eot");
-    src: url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.woff2")format("woff2"),
-    url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.woff")format("woff"),
-    url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.ttf")format("truetype"),
-    url("../fonts/myriad-pro/a89cf050c859a23e4b6d9cf5989acf9e.svg#Myriad Pro")format("svg");
+@font-face{
+    font-family:Almarai Regular;
+    font-style:normal;
+    font-weight:400;
+    src:local("Almarai Regular"),url(../fonts/almarai/Almarai-Regular.785fb0a3c782791d.woff) format("woff");
+    font-display:swap
+}
+@font-face{
+    font-family:Almarai Light;
+    font-style:normal;
+    font-weight:400;
+    src:local("Almarai Light"),url(../fonts/almarai/Almarai-Light.0bcc11b30f067b39.woff) format("woff");
+    font-display:swap
+}
+@font-face{
+    font-family:Almarai Bold;
+    font-style:normal;
+    font-weight:700;
+    src:local("Almarai Bold"),url(../fonts/almarai/Almarai-Bold.73214ca37af6c665.woff) format("woff");
+    font-display:swap
+}
+@font-face{
+    font-family:Almarai ExtraBold;
+    font-style:normal;
+    font-weight:800;
+    src:local("Almarai ExtraBold"),url(../fonts/almarai/Almarai-ExtraBold.fb073682d30352fd.woff) format("woff");
+    font-display:swap
 }
 
 @font-face {
@@ -29,13 +63,13 @@
 
 /* <weight>: Use a value from 300 to 800 */
 
-.open-sans {
-  font-family: "Open Sans", sans-serif;
+.almarai-bold {
+    font-family:Almarai Bold;
 }
 
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family:Almarai Regular;
     font-weight: normal;
     
 }
@@ -78,13 +112,17 @@ body {
     font-weight: 600;
 }
 .text-bold {
-    font-weight: bold;
+    font-weight: 700;
+    font-family:Almarai Bold;
 }
 .text-ex-bold {
     font-weight: 800;
+    font-family:Almarai ExtraBold;
+    
 }
 .text-heavy {
     font-weight: 800;
+
 }
 .text-center {
     text-align: center;
@@ -135,6 +173,46 @@ body {
 .flex-column {
     flex-direction: column;
 }
+.btn {
+    border-radius: 6px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .75rem 2rem;
+    text-decoration: none;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+}
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+.btn-standard {
+    background: var(--white);
+    color: var(--dark-gray);
+}
+.btn-gray {
+    background: var(--text-gray);
+    color: var(--white);
+}
+.registerbtns {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+    margin-top: 2rem;
+}
+.forgetps button.btn.btn-primary {
+    padding: .7rem 1.3rem;
+}
+.btn-primary:hover, .btn-blue:hover {
+    color: var(--golden);
+}
+.btn-blue {
+    background: var(--blue);
+    color: var(--white);
+}
 .congrats {
     text-align: center;
     max-width: max-content !important;
@@ -154,12 +232,23 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f2f2f2;
+    background-color: var(--primary);
     margin: auto;
 }
-.homepage .outer-wraper {
-    
-    background-color: #fff;
+.signup .outer-wraper {
+    background: var(--primary) url('../images/form-bg.webp') no-repeat top center;
+    background-size: contain;
+}
+.homepage .outer-wraper, .bg-wraper {
+    background-color:var(--primary);
+}
+.signupfooter {
+    margin-top: 3rem;
+}
+
+.notice {
+    width: 60%;
+    margin: auto;
 }
 section {
     width: 100%;
@@ -189,12 +278,22 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .header a.logo {
     max-width: 240px;
     height: auto;
     display: flex;
     margin: 0 auto;
+}
+.logoheader {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 1.5rem;
+}
+.logoheader img {
+    width: 180px;
 }
 .header a.logo img {
     max-width: 100%;
@@ -215,7 +314,41 @@ section {
     height: 100%;
     align-items: center;
 }
-
+.renovate {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.renovate img {
+    width: 400px;
+    max-width: 70%;
+}
+.signin-wraper {
+    background: var(--white);
+    border-radius: 15px;
+    width: 550px;
+    max-width: 80%;
+    margin: auto;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.signin-wraper h2 {
+    color: var(--primary);
+    text-transform: uppercase;
+    margin: 0 auto 1rem auto;
+    font-size: 1.75rem;
+}
+.sigin-btn {
+    margin-bottom: 1rem;
+}
+.signin-wraper p {
+    color: var(--text-gray);
+    font-size: .95rem;  
+    margin-bottom: .35rem;
+}
 .form-page .main {
     background-size: cover;
     margin: auto;
@@ -287,33 +420,38 @@ p#disclaimer strong {
     width: 250px;
     padding-top: 1rem;
 }
-.homepage footer.footer {
-    background-color: #e1251b;
-    margin-top: auto;
-    /* padding-top: 2rem; */
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+
+.select-lang {
+    margin: 20px 0;
 }
 .select-lang span {
     display: block;
     width: 100%;
     text-align: center;
+    font-family:Almarai Bold;
+}
+.select-lang .termsspl p {
+    margin-top: 1rem;
+}
+.select-lang span.arabic {
+    font-family: "GE SS Two Medium";
+}
+.select-lang h2.almarai-bold {
+    font-size: 24px;
 }
 .select-lang a {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    color: #000;
-    background-color: #fddc00;
+    color: var(--primary);
+    background-color: #ffffff;
     text-decoration: none;
-    margin: 1rem 0;
-    padding: 5px 0;
-    border-radius: 15px;
-    font-size: .85rem;
-    padding: .6rem 0;
+    margin: .5rem auto;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: .85rem 0;
+    max-width: 360px;
 }
 .select-retailer {
     display: flex;
@@ -350,13 +488,14 @@ p#disclaimer strong {
 .signupform {
     width: 700px;
     max-width: 90%;
-    margin: auto;
+    margin: auto auto 2.5rem auto;
 }
 .signinform {
-    width: 250px;
+    width: 290px;
     max-width: 90%;
     margin: auto;
     display: flex;
+    flex-direction: column;
 }
 #signin_form {
     display: flex;
@@ -365,23 +504,45 @@ p#disclaimer strong {
     justify-content: center;
     width: 100%;
 }
-.shop-form input, .shop-form select, #signup_form input, #signup_form select, #signup_form textarea, #signin_form input  {
+.shop-form input, .shop-form select, #signup_form input, #signup_form select, #signup_form textarea, #signin_form input, #forgot_password input, #reset_password input, .inv-num input  {
     width: 100%;
     outline: none;
-    background: #eff3f7;
-    border: 1px solid #000000;
+    background: #fff;
+    border: 1px solid #d9d9d9;
     padding: 9px 10px;
     margin-bottom: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     color: #808080;
+    margin-top: 4px;
 }
-#signin_form label {
+form#forgot_password button {
+    margin-top: 1.25rem;
+}
+#signin_form label, #forgot_password label, #reset_password label {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    font-size: 1rem;
+    color: var(--text-gray);
 }
 
+.row-50 {
+    width: 100%;
+    display: flex;
+    gap: 0 1rem;
+    justify-content: space-between;
+}
+span.star {
+    color: var(--rose);
+    font-size: 1.5rem;
+}
+.req-fields {
+    display: flex;
+    text-align: right;
+    justify-content: end;
+}
 #signup_form textarea {
-    height: 80px;
+    height: 50px;
 }
 .shop-form input::placeholder {
     color: #808080;
@@ -389,12 +550,14 @@ p#disclaimer strong {
 .invoice-upload {
     width: 100%;
     outline: none;
-    border: 1px solid #000000;
+    border: none;
     padding: 6px 10px;
-    border-radius: 8px;
-    background-color: #eff3f7;
     cursor: pointer;
-    margin: 0 0 0.75rem 0;
+    margin: 0 auto 0.75rem auto;
+}
+input#inputInvoice {
+    margin-top: 1rem;
+    width: 180px;
 }
 .invoice-wraper {
     width: 100%;
@@ -428,8 +591,8 @@ p#disclaimer strong {
     justify-content: center;
     align-items: center;
 }
-.form-buttons .submitnreset img {
-    max-width: 150px;
+.form-buttons .btn  {
+    font-size: 2rem;
 }
 .login-footer {
     width: 100%;
@@ -437,14 +600,59 @@ p#disclaimer strong {
     font-size: 14px;
     justify-content: space-between;
 }
+#signin_form .login-footer label {
+    flex-direction: row;
+    /* display: inline-flex; */
+    white-space: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
+    color: var(--light-gray);
+    font-size: 1rem;
+}
+.remembercheck input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    color: var(--light-gray);
+}
 .login-footer input[type="checkbox"] {
     width: 15px;
     height: 15px;
 }
+.signinfooter {
+    position: relative;
+    z-index: 0;
+    bottom: 0;
+}
+.forgetps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 5px;
+}
+.forgetps a {
+    color: var(--primary);
+    font-size: 1rem;
+    text-decoration: none;
+}
 
+.signinfooter .termsspl {
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+} 
+.signinform h2 {
+    text-transform: uppercase;
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.35rem;
+    margin-bottom: 2.85rem;
+}
 /* .campaign {
     margin-bottom: 4rem;
-} */
+}
 .shop-form {
     width: 500px;
     margin: auto;
@@ -457,10 +665,12 @@ p.errormsg {
     margin-bottom: 15px;
     padding: 6px 10px;
     background: red;
-    /* border: 1px solid red; */
+     border: 1px solid red;
     border-radius: 10px;
+   
+    
 }
-/* #invoice-err p.errormsg {
+ #invoice-err p.errormsg {
     margin-top: 0;
 } */
 .form-terms .lead {
@@ -490,12 +700,24 @@ p.errormsg {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: var(--white);
+    border-radius: 9px;
+    padding: 1.5rem;
+}
+.d_name {
+    text-transform: uppercase;
+    color: var(--primary);
+    font-size: 2.25rem;
+    font-weight: bold;
 }
 .dashboard-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: var(--white);
+    border-radius: 9px;
+    padding: 2rem 0;
 }
 .dashboard-main-raffle-tickets {
     display: flex;
@@ -503,11 +725,78 @@ p.errormsg {
     justify-content: center;
     align-items: center;
 }
+.ticket-number {
+    color: var(--primary);
+    font-size: 5.5rem;
+    position: relative;
+    animation: fadeIn 2s ease-in-out 1, zoomInOut 5s infinite ease-in-out;
+}
+.ticket-number::before {
+    content: "";
+    position: absolute;
+    top: 17%;
+    left: -50%;
+    width: 75px;
+    height: 130px;
+    background: url('../images/price-bg-left.png') top center no-repeat;
+    background-size: contain;
+     animation: fadeIn 7s ease-in-out 1, zoomInOut 5s infinite ease-in-out;
+}
+.ticket-number::after {
+    content: "";
+    position: absolute;
+    top: 17%;
+    right: -50%;
+    width: 75px;
+    height: 130px;
+    background: url('../images/price-bg-right.png') top center no-repeat;
+    background-size: contain;
+     animation: fadeIn 7s ease-in-out 1, zoomInOut 5s infinite ease-in-out;
+}
+.ticket-text {
+    display: flex;
+    justify-content: center;
+    margin-top: -3.5rem;
+}
+.ticket-text h2 {
+    max-width: 150px; /* Adjust to your desired width */
+    text-align: center; /* Centers the text */
+    word-break: break-word;
+    color: var(--primary);
+    font-size: 3rem;
+
+}
+.ticket-message {
+    margin: 1.3rem 0;
+}
+.ticket-message p {
+    font-size: 2rem;
+    color: var(--dark-gray);
+    text-align: center;
+}
 .dashboard-main-tabs ul {
+    width: 85%;
      list-style: none;
      display: flex;
      justify-content: space-between;
+     margin: auto auto 2rem auto;
+     border: 1px solid var(--bg-gray);
 }
+.dashboard-main-tabs ul li {
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--dark-gray);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-main-tabs ul li.active {
+    background-color: var(--bg-gray);
+}
+
 .dashboard-main-tab-item {
     display: flex;
     flex-direction: column;
@@ -517,7 +806,36 @@ p.errormsg {
 .dashboard-main-tab-item form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
+.inv-num {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.invoice-form {
+    width: 85%;
+    margin: 0 auto 2rem auto;
+}
+#invoice-form {
+    display: none;
+}
+#invoice-form.active {
+    display: flex;
+}
+.inv-num label{
+    display: flex;
+    flex-direction: column;
+}
+.invoice-upload label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
 div#transactions {
     width: 100%;
     display: flex;
@@ -526,11 +844,70 @@ div#transactions {
 .tranaction {
     display: flex;
     justify-content: space-between;
+    margin-bottom: .35rem;
+    border-bottom: 1px solid var(--bg-gray);
+    padding-bottom: .35rem;
+    color: var(--dark-gray);
+}
+#winners, #transactions {
+    display: none;
+}
+#winners.active {
+    display: flex;
+    flex-direction: column;
 }
 .winner-row {
     display: flex;
     justify-content: space-between;
+    margin-bottom: .75rem;
+    font-family:Almarai Bold;
+    color: var(--dark-gray);
 }
+.announcement {
+    font-size: 2.2rem;
+    color: var(--primary);
+    text-align: center;
+    margin: 1rem auto 1.3rem auto;
+}
+#leader-board {
+    width: 85%;
+    margin: auto;
+}
+.leader-board-title h2 {
+    text-align: center;
+    border-top: 1px solid var(--bg-gray);
+    border-bottom: 1px solid var(--bg-gray);
+    padding: 1rem 0;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+    margin-bottom: 1rem;
+}
+.thanks-wraper {
+    width: 350px;
+    max-width: 85%;
+    margin: 4rem auto 2rem auto;
+}
+.thanks-wraper h2 {
+    color: var(--yellow);
+    text-align: center;
+    font-size: 4rem;
+    line-height: 3.8rem;
+    margin-bottom: 2rem;
+}
+.thanks-wraper h2 span {
+    font-size: 3.2rem;
+}
+.thanks-wraper p {
+    margin-bottom: 2rem;
+}
+.backto {
+    width: 250px;
+    margin: auto;
+    font-size: 1.3rem;
+    padding: 1.3rem 0;
+}
+
 
 /* Dashboard Ends */
 
@@ -604,13 +981,13 @@ div#transactions {
 }
  
 .popupContent::-webkit-scrollbar-thumb {
-  background-color: #B3B3B3;
+  background-color: var(--light-gray);
   outline: none;
 }
 .popupClose {
     font-size: 2rem;
     font-weight: 700;
-    color: #B3B3B3;
+    color: var(--light-gray);
     width: max-content;
     position: absolute;
     right: calc(4rem + 15px);
@@ -792,7 +1169,7 @@ img.recipebook {
     height: 100%;
 }
 .select-lang {
-    padding: 0 3rem;
+    padding: 0 20%;
 }
 .ramadan {
     width: 100%;
@@ -988,6 +1365,12 @@ table {
         width: 100%;
     }
 }
+@media only screen and (min-width: 480px) { 
+    .signinform {
+        width: 400px;
+    }
+}
+
 @media only screen and (max-width: 480px) { 
     html {
         font-size: 12px !important;
@@ -1073,5 +1456,13 @@ table {
     }
     50% {
         transform: rotate(2deg) translateY(5px);
+    }
+}
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(.85);
     }
 }

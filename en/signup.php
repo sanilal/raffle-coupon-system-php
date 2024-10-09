@@ -100,23 +100,55 @@ if ($password === $confirmPassword) {
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="signup">
 <div class="outer-wraper">
-   <div class="signupform">
-    <h2>Register</h2>
-        <form method="post" action="" name="signup_form" id="signup_form">
-            <input type="text" name="fname" placeholder="First Name" required>
-            <input type="text" name="lname" placeholder="Last Name" required>
-            <textarea name="address" id="address" required></textarea>
-            <input type="text" name="region" placeholder="Region" required>
-            <input type="tel" name="mobile" placeholder="Number" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="cpassword" placeholder="Confirm Password" required>
-            <button type="submit">Create Account</button>
-            <button type="reset">Cancel</button>
-        </form>
-   </div>
+    <div class="logoheader">
+        <img src="../assets/images/alyoum-logo.png" alt="Alyoum Logo" class="img-fluid">
+    </div>
+        <div class="welcome text-black fontsize15 d-flex flex-column">
+            <div class="renovate">
+                <img src="../assets/images/renovate-your-kitchen-inner-en.png" alt="Renovate your kitchen with Alyoum Chicken">
+            </div>
+        </div>
+        <div class="signin-wraper">
+        <div class="signupform">
+            <h2>Register new account</h2>
+                <form method="post" action="" name="signup_form" id="signup_form">
+                    <div class="row-50">
+                        <label class="col" for="fname">First Name<span class="star">*</span><input type="text" name="fname" required></label>
+                        <label class="col" for="lname">Last Name<input type="text" name="lname" required></label>
+                    </div>
+                    <div class="row">
+                        <label for="address">Address<span class="star">*</span><textarea name="address" id="address" required></textarea></label>
+                    </div>
+                    <div class="row">
+                        <label for="region">Region<span class="star">*</span><input type="text" name="region" required></label>
+                    </div>
+                    <div class="row">
+                        <label for="mobile">Mobile Number<span class="star">*</span><input type="tel" name="mobile" required></label>
+                    </div>
+                    <div class="row">
+                        <label for="email">Email<span class="star">*</span><input type="email" name="email" required></label>
+                    </div>
+                    <div class="row">
+                        <label for="password">Password<span class="star">*</span><input type="password" name="password" required></label>
+                    </div>
+                    <div class="row">
+                        <label for="cpassword">Confirm Password<span class="star">*</span><input type="password" name="cpassword" required></label>
+                    </div>
+                    <div class="row"><div class="req-fields"><span class="star">*</span>required fields</div></div>
+                    <div class="registerbtns">
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                        <button type="reset" class="btn btn-gray">Cancel</button>
+                    </div>
+                </form>
+        </div>
+        </div>
+        <div class="signupfooter">
+                <div class="termsspl">
+                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                </div>
+            </div>
 </div>
 
 </body>
