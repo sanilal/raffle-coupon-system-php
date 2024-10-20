@@ -3,9 +3,13 @@ session_start(); // Start the session at the top
 ob_start();
 date_default_timezone_set('Asia/Riyadh'); 
 
+
 include("../alyoumAdmin987/includes/conn.php"); 
 
+
+
 include_once('../inc/header.php');
+
 
 // if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_me'])) {
 //     $token = $_COOKIE['remember_me'];
@@ -36,6 +40,42 @@ $gwid = $gwRes['id'];
 $multiplier = $gwRes['prize_multiplication'];
 // var_dump($multiplier);
 
+// Check for custom notifications
+    // 01. Transaction notification (golden week success)
+    $transactionSql="select * from `".TB_pre."transactions` WHERE `user_id` = '$userid' ORDER BY `id` DESC LIMIT 1 ";
+    $transactionR1=mysqli_query($url,$transactionSql) or die("Failed".mysqli_error($url));
+    $transactionRow = mysqli_fetch_array($transactionR1);
+
+    $transactionTime=$transactionRow['date'];
+    $currentTime = date('Y-m-d H:i:s');
+    $transactiongwId=$transactionRow['golden_week_id'];
+
+   // Create DateTime objects
+$transactionDateTime = new DateTime($transactionTime);
+$currentDateTime = new DateTime($currentTime);
+
+// Calculate the difference
+$timeDifference = $currentDateTime->diff($transactionDateTime);
+
+// Convert the difference to total minutes
+$minutesDifference = ($timeDifference->days * 24 * 60) + ($timeDifference->h * 60) + $timeDifference->i;
+// print_r($minutesDifference); die;
+if($transactiongwId === $gwRes['id']) {
+    $gwNotification = $gwRes['notification'];
+    if ($minutesDifference < 60) {
+        $gwSuccessNotification = "Congratulations!
+Your chances in the raffle just doubled!";
+    }
+} 
+
+
+// Check if the time difference is less than 1 hour
+// if ($timeDifference->h < 1 && $timeDifference->days == 0) {
+//     echo "The time difference is less than 1 hour.";
+// } else {
+//     echo "The time difference is more than 1 hour.";
+// }
+
 $rfcquery = "select SUM(raffle_coupons) from `".TB_pre."transactions` WHERE `user_id` = '$userid' ";
 $rfcr1=mysqli_query($url,$rfcquery) or die("Failed".mysqli_error($url));
 $rfcRow = mysqli_fetch_array($rfcr1);
@@ -46,55 +86,6 @@ $rfcSum = $rfcRow['SUM(raffle_coupons)'];
 // var_dump($rfcSum);
 
 
-if(isset($_REQUEST['btnadd'])){
-    $invNumber=$_POST['inv-number'];
-   
-
-    $invoiceSql="select * from `".TB_pre."transactions` WHERE `invoice_no` = '$invNumber' ";
-    $invoicer1=mysqli_query($url,$invoiceSql) or die("Failed".mysqli_error($url));
-    $invoicerowcount=mysqli_num_rows($invoicer1);
-
-    // var_dump($invoicerowcount); die;
-    if ($invoicerowcount != 0) { 
-        echo '<script> 
-            alert("This invoice number has been previously submitted");
-            setTimeout(function() {
-                window.location.href = "/";
-            }, 1000); // Delay for 10 seconds (10000 milliseconds)
-        </script>';
-        exit(); // Stop script execution
-    }
-    // var_dump($_FILES['inputInvoice']); die;
-    include_once("../alyoumAdmin987/classes/class.upload.php");
-    $p_image=image_upload($_FILES['inputInvoice'],$invNumber."main_img".time());
-
-  //  var_dump($p_image); die;
-
-    $g_image="";
-		for($i=1;$i<=12;$i++){
-			$u_image=image_upload($_FILES['inputInvoice'.$i],$product."g_img".$i);
-			//var_dump($_FILES['productimg'.$i]);
-			if($u_image!=""){
-				$g_image.=",".$u_image;
-			}
-		}
-		$g_image=ltrim($g_image,",");
-		
-	    //	var_dump($_FILES['inputInvoice']); die;
-		// var_dump($p_image); exit;
-		//
-		$msg=""; $error="";
-		  //var_dump($num); exit;
-
-        $currentDate = date('Y-m-d');
-        $raffleCoupons = 2*$multiplier;
-        $goldenWeek = $gwid;
-
-
-        $query = "INSERT INTO `".TB_pre."transactions` (`user_id`,`invoice_no`,invoice_img,`date`,`raffle_coupons`,`golden_week_id`) VALUES('$userid','$invNumber','$p_image','$currentDate','$raffleCoupons','$goldenWeek')";
-        $r = mysqli_query($url, $query) or die(mysqli_error($url));
-
-}
 
 ?>
 
@@ -106,6 +97,7 @@ if(isset($_REQUEST['btnadd'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
 <body class="userdashboard">
    
@@ -113,14 +105,24 @@ if(isset($_REQUEST['btnadd'])){
         <div class="logoheader">
             <img src="../assets/images/alyoum-logo.png" alt="Alyoum Logo" class="img-fluid">
         </div>
-        <div class="dashboard">
-            <div class="dashboard-welcome">
+        <div class="dashboard ">
+            <div class="dashboard-welcome mt-4">
+                <?php if(!isset($gwSuccessNotification)) { ?>
                 <h1 class="d_name">Welcome <?php echo $fname; ?></h1>
+                <?php if(isset($gwNotification)) { echo $gwNotification; } ?>
+                <?php } else {?>
+                <div class="dashoboard-notifications">
+                    <?php if(isset($gwNotification)) { ?>
+                    <div class="lead-notification text-bold">
+                        <?php echo $gwSuccessNotification; ?>
+                    </div>
+                    <?php } 
+                    if(isset($gwNotification)) { echo $gwNotification; } ?>
+                    
+                </div>
+                <?php } ?>
             </div>
-            <div class="dashoboard-notifications">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis sint, ea nobis sed, dicta nulla facere iste itaque ullam iure neque quisquam a</p>
-            </div>
-            <div class="dashboard-main">
+            <div class="dashboard-main mt-1">
                 <div class="dashboard-main-raffle-tickets">
                     <div class="ticket-number">
                         <h1 id="ticketNumber" class="text-bold">0</h1>
@@ -135,15 +137,16 @@ if(isset($_REQUEST['btnadd'])){
                 </div>
                 <div class="dashboard-main-tabs">
                     <ul>
-                        <li class="text-bold active">Increase your chances of winning</li>
-                        <li class="text-bold">Transacion History</li>
+                        <li class="text-bold active" id="increase-chance">Increase your chances of winning</li>
+                        <li class="text-bold" id="transaction-history">Transacion History</li>
                     </ul>
                     <div class="invoice-form">
-                        <div class="dashboard-main-tab-item" id="invoice-form">
-                            <form role="form" method="post"  class="form-horizontal" action="dashboard.php#submitForm" enctype="multipart/form-data" id="submitForm" >
+                        <div class="dashboard-main-tab-item active" id="invoice-form">
+                            <form role="form" method="post"  class="form-horizontal" action="submission.php" enctype="multipart/form-data" id="submitForm" >
                                 <div class="box-body row">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="zone" id="zone" value="uae">
+                                        <input type="hidden" name="gwid" id="gwid" value="<?php echo $gwid; ?>">
+                                        <input type="hidden" name="uid" id="uid" value="<?php echo $userid; ?>">
                                         <div class="inv-num">
                                             <label for="inv-number">invoice Number
                                             <input type="text" class="form-control" name="inv-number" id="inv-number" required /></label>
@@ -184,24 +187,30 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
                <?php } ?> 
             </div>
                         <div class="dashboard-main-tab-item">
-                            <div id="transactions">
+                        
+                            <table id="transactions">
                             <?php 
 					    $i = 1;
 					    while($res = mysqli_fetch_array($r1)){ ?>
-                                <div class="tranaction">
-                                    <div class="transaction-col"><?php echo $i++; ?></div>
-                                    <div class="tranaction-col"><?php echo $res['invoice_no']; ?></div>
-                                    <div class="tranaction-col"><?php echo $res['date']; ?></div>
-                                </div>
+                                <tr class="tranaction">
+                                    <td width="50"><?php echo $i++; ?></td>
+                                    <td class="invnocol"><?php echo $res['invoice_no']; ?></td>
+                                    <td width="100">
+                                        <?php 
+                                        $date = new DateTime($res['date']);
+                                        echo $date->format('Y/m/d'); 
+                                        ?>
+                                    </td>
+                                </tr>
                                 <?php } ?>
                                 
-                            </div>
+                            </table>
                         </div>
                         
                     </div>
                     <div id="leader-board">
                         <div class="leader-board-title">
-                            <h2>+ Leader Board</h2>
+                            <h2 id="leaderBoadButton">+ Leader Board</h2>
                         </div>
                         <div class="winners" id="winners">
                                 <div class="winner-row">
@@ -234,6 +243,7 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
 
         </div>
     </div>
+    <script src="../assets/scripts/dashboard.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
     const ticketElement = document.getElementById('ticketNumber');

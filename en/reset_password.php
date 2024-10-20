@@ -1,13 +1,16 @@
 <?php
+ob_start();
+date_default_timezone_set('Asia/Riyadh'); 
+include("../alyoumAdmin987/includes/conn.php"); 
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
-    $result = mysqli_query($db_conn, "SELECT * FROM users WHERE reset_token='$token' AND reset_expiry > NOW()");
+    $result = mysqli_query($url, "SELECT * FROM `" . TB_pre . "users` WHERE reset_token='$token' AND reset_expiry > NOW()");
     $user = mysqli_fetch_assoc($result);
 
     if ($user) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $new_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            mysqli_query($db_conn, "UPDATE users SET password='$new_password', reset_token=NULL, reset_expiry=NULL WHERE id=" . $user['id']);
+            mysqli_query($url, "UPDATE `" . TB_pre . "users` SET password='$new_password', reset_token=NULL, reset_expiry=NULL WHERE id=" . $user['id']);
             
             echo "Password updated successfully!";
             header("Location: login.php");
@@ -15,6 +18,8 @@ if (isset($_GET['token'])) {
     } else {
         echo "Invalid or expired token.";
     }
+} else {
+    header("Location: signin.php");
 }
 ?>
 
@@ -26,6 +31,7 @@ if (isset($_GET['token'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
 <body class="signin">
 <div class="outer-wraper">

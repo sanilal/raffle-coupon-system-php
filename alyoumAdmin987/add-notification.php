@@ -1,4 +1,4 @@
-<?php $active="campaign"; ?>
+<?php $active="notification"; ?>
 <?php
 	ob_start();
 	include("includes/conn.php"); 
@@ -297,7 +297,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
                           ?>
                         </td>
 <td>
-<a href="edit-notification.php?nid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View / Edit</a>
+<a href="notification.php?nid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View </a>
 </td>
                       
                       </tr>

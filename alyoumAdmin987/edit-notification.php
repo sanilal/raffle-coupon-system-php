@@ -65,8 +65,55 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 
 
 ?>
-  
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #313131 !important;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #4CAF50;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
   	.grey-img{ opacity:0.4;}
   </style>
 
@@ -122,34 +169,30 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
                     <label>Applicable Users</label>
-                    <select id="applicable-users" name="users[]" multiple="multiple" class="form-control">
-                      <option value="0">All</option>
-                      <?php
-                      // Fetch each user and display in the dropdown
-                      while($users_assoc = mysqli_fetch_object($users_r)) { 
-                       // var_dump($pr_res->id); die;
-                        ?>
-                        <option value="<?php echo $users_assoc->id; ?>" <?php if($pr_res->id==$users_assoc->id){ echo 'selected="selected"';} ?>>
-                          <?php echo $users_assoc->first_name . ' ' . $users_assoc->last_name . ' &lt;' . trim($users_assoc->email) . '&gt;'; ?>
-                        </option>
-                      <?php } ?>
-                    </select>
+                    <?php
+$selected_users = explode(',', $pr_res->applicable_users); // Convert comma-separated string to array
+?>
+
+<select id="applicable-users" name="users[]" multiple="multiple" class="form-control">
+    <option value="0">All</option>
+    <?php
+    // Fetch each user and display in the dropdown
+    while ($users_assoc = mysqli_fetch_object($users_r)) { 
+    ?>
+        <option value="<?php echo $users_assoc->id; ?>" 
+            <?php if (in_array($users_assoc->id, $selected_users)) { echo 'selected="selected"'; } ?>>
+            <?php echo $users_assoc->first_name . ' ' . $users_assoc->last_name . ' &lt;' . trim($users_assoc->email) . '&gt;'; ?>
+        </option>
+    <?php } ?>
+</select>
+
                   </div>
 
 
-					  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 m-r-0" style="margin-left: 0;">
-            <label>Select Country</label>
-                      <select class="form-control" name="countryname" id="countryname" required >
-                      	<option value="">Select</option>
-                        <?php 
-						$res_cat=mysqli_query($url,"SELECT * FROM `".TB_pre."zone`");
-						while($row=mysqli_fetch_object($res_cat)){
-						?>
-                        <option value="<?php echo $row->zone_id; ?>" <?php if($pr_res->zone==$row->zone_id){ echo 'selected="selected"';} ?>><?php echo $row->country; ?></option>
-                        
-                       
-                      	<?php } ?>
-                      </select>
+					  <div class="form-group col-md-12 m-r-0" style="margin-left: 0;">
+            <label>Notification</label>
+            <textarea class="form-control" placeholder="Enter Notification" name="notification" id="notification"><?php echo htmlspecialchars($pr_res->notification_message); ?></textarea>
+
 						  
 						</div>
             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 m-r-0">
@@ -210,9 +253,22 @@ foreach ($prizes as $key => $value) {
 <?php include_once('includes/footer.php'); ?>
     <!-- jQuery 2.1.4 -->
 <?php include_once('includes/footer-scripts.php'); ?>     
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 
+$(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('notification');
+  });
+
 	$(document).ready(function(){
+
+    $('#applicable-users').select2({
+      placeholder: "Select users", // Placeholder text
+      allowClear: true // Allows clearing selection
+    });
 
     $('#countryname').on('change', function(){
     var countryid = $(this).val();

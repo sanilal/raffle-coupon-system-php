@@ -15,18 +15,25 @@
 $startdate=$startdate_assoc['c_start'];
 $enddate=$startdate_assoc['c_ends'];
 
+
  if(isset($_REQUEST['btnadd'])){
 	 
 	$name=$_POST['wname'];	
 	$start_date	= $_POST['gw_start_date'];
 	$end_date	= $_POST['gw_end_date'];
 	$multiplier=$_POST['multiplier'];
+  $notification=$_POST['notification'];
+  $active= $_POST['status'];
+// var_dump($notification); die;
+  if($active!=1) {
+    $active =0;
+  }
 
 	if($name!="" && $start_date!="" && $end_date!="" && $multiplier!=""  ){
 
 		 // var_dump($multiplier); exit;
-		  $query = "INSERT INTO `".TB_pre."golden_week` (`name`,`start_date`,`end_date`,`prize_multiplication`,`active`) VALUES('$name','$start_date','$end_date','$multiplier','1')";
-		  //echo $query; exit;
+		  $query = "INSERT INTO `".TB_pre."golden_week` (`name`,`start_date`,`end_date`,`prize_multiplication`,`notification`,`active`) VALUES('$name','$start_date','$end_date','$multiplier','$notification','$active')";
+		 // echo $query; exit;
 		  $r = mysqli_query($url, $query) or die(mysqli_error($url));
 		  if($r){
 			  $msg.= "Golden Week Successfully Added";
@@ -46,7 +53,52 @@ $enddate=$startdate_assoc['c_ends'];
 }
 ?>
   
+<style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #4CAF50;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+</style>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -125,6 +177,25 @@ this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this
                    
                    
 					  </div>
+            <div class="row">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
+                      <label>Notification</label>
+                      <textarea class="form-control" placeholder="Enter Notification" name="notification" id="notification"></textarea>
+                    </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                            <!-- Form Group for Active/Inactive Toggle -->
+<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
+  <label for="status">Status</label>
+  <label class="switch">
+    <input type="checkbox" id="status-toggle" name="status" value="1">
+    <span class="slider"></span>
+  </label>
+  <span id="status-label" style="margin-left: 10px;">Inactive</span>
+</div>
+              </div>
+            </div>
 					
 					 <div class="row">
 					  <div class="box-footer col-md-12 m-r-0" style="padding: 10px 0;">
@@ -173,7 +244,7 @@ this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this
                         <td><?php echo $res['prize_multiplication']; ?></td>
                         
 <td>
-<a href="edit-prize.php?pid=<?php echo $res['pid']; ?>" class="btn btn-primary" title="Edit">Edit</a>
+<a href="goldenweek.php?gwid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View</a>
 </td>
                       
                       </tr>
@@ -196,8 +267,15 @@ this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this
 
 <?php include_once('includes/footer.php'); ?>
     <!-- jQuery 2.1.4 -->
-<?php include_once('includes/footer-scripts.php'); ?>     
+<?php include_once('includes/footer-scripts.php'); ?>    
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>   
+
 <script>
+$(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('notification');
+  });
 
 $('#countryname').on('change', function(){
     var countryid = $(this).val();
@@ -219,6 +297,15 @@ $('#countryname').on('change', function(){
 });
 
 $(function () {
+
+  document.getElementById('status-toggle').addEventListener('change', function() {
+    var statusLabel = document.getElementById('status-label');
+    if (this.checked) {
+      statusLabel.textContent = 'Active';
+    } else {
+      statusLabel.textContent = 'Inactive';
+    }
+  });
         /*$('#example2').DataTable({
           "paging": true,
           "lengthChange": true,

@@ -14,7 +14,68 @@ date_default_timezone_set('Asia/Riyadh');
 
 include("../alyoumAdmin987/includes/conn.php"); 
 
+$userid =$_POST['uid'];
+$gwid =$_POST['gwid'];
+// var_dump($userid); die;
 
+
+
+if(!isset($userid)) {
+    header('Location: dashboard.php');
+}
+
+if(isset($_REQUEST['btnadd'])){
+    $invNumber=$_POST['inv-number'];
+
+    $invoiceSql="select * from `".TB_pre."transactions` WHERE `invoice_no` = '$invNumber' ";
+    $invoicer1=mysqli_query($url,$invoiceSql) or die("Failed".mysqli_error($url));
+    $invoicerowcount=mysqli_num_rows($invoicer1);
+
+    // var_dump($invoicerowcount); die;
+    if ($invoicerowcount != 0) { 
+        echo '<script> 
+            alert("This invoice number has been previously submitted");
+            setTimeout(function() {
+                window.location.href = "/";
+            }, 1000); // Delay for 10 seconds (10000 milliseconds)
+        </script>';
+        exit(); // Stop script execution
+    }
+    // var_dump($_FILES['inputInvoice']); die;
+    include_once("../alyoumAdmin987/classes/class.upload.php");
+    $p_image=image_upload($_FILES['inputInvoice'],$invNumber."main_img".time());
+
+  //  var_dump($p_image); die;
+
+    $g_image="";
+		for($i=1;$i<=12;$i++){
+			$u_image=image_upload($_FILES['inputInvoice'.$i],$product."g_img".$i);
+			//var_dump($_FILES['productimg'.$i]);
+			if($u_image!=""){
+				$g_image.=",".$u_image;
+			}
+		}
+		$g_image=ltrim($g_image,",");
+		
+	    //	var_dump($_FILES['inputInvoice']); die;
+		// var_dump($p_image); exit;
+		//
+		$msg=""; $error="";
+		  //var_dump($num); exit;
+
+        $currentDate = date('Y-m-d H:i:s');
+        $raffleCoupons = 2*$multiplier;
+        $goldenWeek = $gwid;
+
+
+        $query = "INSERT INTO `".TB_pre."transactions` (`user_id`,`invoice_no`,invoice_img,`date`,`raffle_coupons`,`golden_week_id`) VALUES('$userid','$invNumber','$p_image','$currentDate','$raffleCoupons','$goldenWeek')";
+        $r = mysqli_query($url, $query) or die(mysqli_error($url));
+
+        
+
+} else {
+    header('Location: dashboard.php');
+}
 
 ?>
 
@@ -26,6 +87,7 @@ include("../alyoumAdmin987/includes/conn.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
 <body class="signin">
 <div class="outer-wraper">

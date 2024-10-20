@@ -26,74 +26,73 @@
           	
             <li class="header"> <a href="logout.php" ><i class="fa fa-power-off"></i> &nbsp;Sign out</a></li>
               <li class="treeview <?php if($active=="submissions"){ echo "active";} ?>">
-              <a href="submissions.php">
-                <i class="fa fa-shopping-bag"></i>
-                <span>Shop & Win</span>
+              <a href="transactions.php">
+                <i class="fa fa-book"></i>
+                <span>Transactions</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
             
-              	<li><a href="submissions.php"><i class="fa fa-folder-open"></i> All Submissions</a></li>     
-              	<li><a href="union-submissions.php"><i class="fa fa-folder-open"></i> Union Coop Submissions</a></li>     
-              	<li><a href="emirates-submissions.php"><i class="fa fa-folder-open"></i> Emirates Co-Op Submissions</a></li>     
-              	<li><a href="noon-submissions.php"><i class="fa fa-folder-open"></i> Noon Submissions</a></li>     
-              	<li><a href="careem-submissions.php"><i class="fa fa-folder-open"></i> Careem Submissions</a></li>     
+              	<li class="<?php if($active=="submissions"){ echo "active";} ?>"><a href="transactions.php"><i class="fa fa-user" style="font-size: 10px;"></i> Transactions</a></li>     
+              	 
               </ul>
             </li>
-            <li class="treeview <?php if($active=="winners"){ echo "active";} ?>">
+            <li class="treeview <?php if($active=="users"){ echo "active";} ?>">
+              <a href="users.php">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+            
+              	<li class="<?php if($active=="users"){ echo "active";} ?>"><a href="users.php"><i class="fa fa-user"></i> Registered Users</a></li>     
+              	 
+              </ul>
+            </li>
+            <li class="treeview <?php if($active=="notification"){ echo "active";} ?>">
               <a href="#">
-                <i class="fa fa-newspaper-o"></i>
-                <span>Winners</span>
+                <i class="fa fa-bullhorn"></i>
+                <span>Manage Notifications</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
-                      <a href="winners.php">
-                        <i class="fa fa-trophy"></i>
-                        <span>Winners</span>
+                      <a href="notifications.php">
+                        <i class="fa fa-bell"></i>
+                        <span>View All Notifications</span>
                       </a>
                    </li>
                    
                    <li>
-                      <a href="confirmed-winners.php">
-                        <i class="fa fa-trophy"></i>
-                        <span>Confirmed Winners</span>
+                      <a href="add-notification.php">
+                        <i class="fa fa-bell-o"></i>
+                        <span>Add Notification</span>
                       </a>
                    </li>
-                   <li>
-                      <a href="rejections.php">
-                        <i class="fa fa-thumbs-o-down"></i>
-                        <span>Rejected Entries</span>
-                      </a>
-                   </li>
+                  
                  </ul>
            
              </li>
          <li class="treeview <?php if($active=="campaign"){ echo "active";} ?>">
               <a href="#">
-                <i class="fa fa-newspaper-o"></i>
-                <span>Campaign Settings</span>
+                <i class="fa fa-calendar"></i>
+                <span>Golden Weeks</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
               <li>
-                        <a href="dates.php">
+                        <a href="goldenweeks.php">
                             <i class="fa fa-braille"></i>
-                            <span>View Active Dates</span>
+                            <span>View Golden Weeks</span>
                         </a>
                   </li>
                   <li>
-                        <a href="prizes.php?section_id=1">
+                        <a href="add-golden-week.php">
                             <i class="fa fa-gift"></i>
-                            <span>Prizes</span>
+                            <span>Add Golden Week</span>
                         </a>
                   </li>
-                  <li>
-                        <a href="add-prize.php">
-                            <i class="fa fa-gift"></i>
-                            <span> + Add Prize</span>
-                        </a>
-                  </li>
+                 
                  
                  </ul>
            

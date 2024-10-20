@@ -19,6 +19,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    font-size: 14px;
+}
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 
@@ -71,7 +74,6 @@
 body {
     font-family:Almarai Regular;
     font-weight: normal;
-    
 }
 .clearfix {
     overflow: auto;
@@ -91,7 +93,7 @@ body {
     max-height: 0;
 }
 .text-white {
-    color: #fff;
+    color: #fff !important;
 }
 .text-blue {
     color: #1966ae;
@@ -167,6 +169,18 @@ body {
 .mt-auto {
     margin-top: auto;
 }
+.mt-1 {
+    margin-top: 1rem;
+}
+.mt-2 {
+    margin-top: 2rem;
+}
+.mt-3 {
+    margin-top: 3rem;
+}
+.mt-4 {
+    margin-top: 4rem;
+}
 .aic {
     align-items: center;
 }
@@ -188,6 +202,7 @@ body {
 .btn-primary {
     background: var(--primary);
     color: var(--white);
+    cursor: pointer;
 }
 .btn-standard {
     background: var(--white);
@@ -526,6 +541,62 @@ form#forgot_password button {
     color: var(--text-gray);
 }
 
+#password-requirements {
+    list-style-type: none;
+    margin-bottom: .5rem;
+    margin-left: 1rem;
+}
+p.lead {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    margin-bottom: .5rem;
+}
+.errormsg, .errormsg .errstatus {
+    color: red;
+}
+p.errormsg, .signin-wraper p.errormsg {
+    background: #a20000;
+    padding: 6px 8px;
+    color: #fff;
+    /* border-radius: 5px; */
+    opacity: .8;
+}
+ .invalid-login {
+    background: #a20000;
+    padding: 6px 8px;
+    color: #fff !important;
+    margin-top: 1rem;
+    /* border-radius: 5px; */
+}
+input.highlighted, textarea.highlighted {
+    border: 1px solid #a20000 !important;
+}
+
+.successmsg, .successmsg .errstatus {
+    color: green;
+}
+
+#password-requirements li {
+    margin-bottom: 3px;
+    font-size: .9rem;
+    line-height: 1rem;
+}
+
+#password-requirements li span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#password-requirements .valid span {
+    color: green;
+}
+
+#password-requirements .invalid span {
+    color: red;
+}
+
+
 .row-50 {
     width: 100%;
     display: flex;
@@ -649,6 +720,19 @@ input#inputInvoice {
     text-align: center;
     font-size: 1.35rem;
     margin-bottom: 2.85rem;
+}
+.dashoboard-notifications {
+    text-align: center;
+    font-size: 1.2rem;
+}
+.dashboard-welcome p {
+    text-align: center;
+    margin-top: 1rem;
+}
+.lead-notification {
+    font-size: 1.8rem;
+    color: var(--dark-gray);
+    line-height: 2rem;
 }
 /* .campaign {
     margin-bottom: 4rem;
@@ -792,6 +876,7 @@ p.errormsg {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .dashboard-main-tabs ul li.active {
     background-color: var(--bg-gray);
@@ -836,10 +921,23 @@ p.errormsg {
     font-size: 1.5rem;
 }
 
-div#transactions {
+#transactions {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    table-layout: fixed; /* This ensures the columns maintain equal width */
+}
+
+#transactions td {
+    text-align: left; /* Left-aligns all table data */
+    padding: 10px; /* Adds padding for better readability */
+    word-wrap: break-word; /* Forces long content to wrap */
+}
+
+
+tr.tranaction:nth-child(even) {
+    background-color: #fff;
+}
+.invnocol {
+    width: calc(100% - 150px);
 }
 .tranaction {
     display: flex;
@@ -849,10 +947,13 @@ div#transactions {
     padding-bottom: .35rem;
     color: var(--dark-gray);
 }
+.tranaction:last-child {
+    border-bottom: 0;
+}
 #winners, #transactions {
     display: none;
 }
-#winners.active {
+#winners.active, #transactions.active {
     display: flex;
     flex-direction: column;
 }
@@ -1205,220 +1306,6 @@ table {
     animation: fadeIn 3s ease-in-out forwards;
 }
 
-/* Media Query */
-@media only screen and (min-width: 1366px) {
-    .win-cash img {
-        max-width: 350px;
-        margin-left: auto;
-    }
-}
-@media only screen and (min-width: 992px) {
-    .win-cash img {
-        max-width: 300px;
-        margin-left: auto;
-    }
-}
-
-@media only screen and (min-width: 768px) { 
-    .form-page .win-cash {
-        margin: 3rem auto;
-    }
-    .form-page .win-cash img {
-        width: 380px;
-        max-width: 90%;
-        margin: auto;
-    }
-    .win-cash img {
-        max-width: 400px;
-        margin: auto;
-    }
-    .win-cash .product-img img {
-        max-width: 300px;
-        margin: auto;
-    }
-    .homepage .main {
-        /* background: url(../images/home-bg.webp) no-repeat top center;
-        background-size: cover; */
-        width: 540px;
-        max-width: 100%;
-        min-height: 100vh;
-        margin: auto;
-    }
-    .homepage .main .container {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        align-items: flex-start;
-        margin: 0 auto;
-        /* height: 64vh; */
-    }
-    .homepage .win-cash {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-    }
-
-}
-@media only screen and (max-width: 767px) { 
-    .form-page .win-cash {
-        margin: 1rem auto;
-    }
-    .spinner::before { 
-        top: -25px;
-    }
-    .hide-sm {
-        display: none;
-    }
-    .sm-only {
-        display: flex;
-    }
-    .fontsize15  {
-        font-size: 2.5vh !important;
-    }
-
-    .header a.logo {
-        height: auto;
-        display: flex;
-    }
-    .header a.logo img {
-        max-width: 160px;
-    }
-    .win-cash {
-        justify-content: center;
-        align-items: center;
-        margin: 1rem 0;
-    }
-    .homepage .win-cash {
-        justify-content: right;
-        align-items: center;
-        margin: 1rem 0;
-
-    }
-    .invoice-wraper h3 {
-        font-size: 1rem;
-    }
-    .form-terms .lead {
-        font-size: 1.2rem;
-    }
-    .win-cash h2 {
-        font-size: max(2.5vh, 15px);
-        line-height: max(2.8vh, 17px);
-    }
-    .win-cash .termsspl {
-        width: 100%;
-        max-width: 85vw;
-        text-align: center;
-    }
-    .win-cash img {
-        max-height: 23vh;
-        height: auto;
-        margin: 1rem 0;
-    }
-    .termsspl img {
-        max-height: 4.8vh;
-    }
-    .select-lang a {
-        margin: 1vh 0;
-    }
-
-    #spin-page {
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto auto auto;
-        height: 100%;
-        min-height: 90vh;
-    }
-    #spin-page .main {
-        margin-top: auto;
-    }
-    .spinner {
-        position: relative;
-        width: 280px;
-        height:280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 30px 0;
-    }
-    .spinner::before {
-        content: "";
-        width: 35px;
-        height: 55px;
-    }
-    .base {
-        width: 130px;
-    }
-    #airfryer {
-         padding: 0 15px !important;
-    }
-    div#airfryer h2.text-heavy.text-center.fontsize25 {
-        max-width: 100%;
-        text-align: center;
-        font-size: 1.7rem;
-    }
-    div#airfryer h2.text-heavy.text-center.fontsize25 small {
-        display: block;
-        font-size: 1.5rem;
-        width: 100%;
-    }
-}
-@media only screen and (min-width: 480px) { 
-    .signinform {
-        width: 400px;
-    }
-}
-
-@media only screen and (max-width: 480px) { 
-    html {
-        font-size: 12px !important;
-    }
-    .retailers {
-        width: 280px;
-    }
-    
-    .retailers a {
-        width: 140px;
-    }
-    
-}
-@media only screen and (max-width: 420px) { 
-    
-    .win-cash h2 {
-        font-size: max(3vh, 18px);
-        line-height: max(3.2vh, 20px);
-    }
-    .retailers {
-        width: 300px;
-    }
-    
-    .retailers a {
-        width: 150px;
-    }
-}
-@media only screen and (max-width: 320px) { 
-    html {
-        font-size: 9px !important;
-    }
-    .fontsize25 {
-        font-size: 2.15rem !important;
-    }
-    .fontsize15 {
-        font-size: 1.8vh !important;
-    }
-    .win-cash {
-        margin: max(25vh, 245px) 0 1rem 1rem;
-    }
-    .retailers {
-        width: 200px;
-    }
-    
-    .retailers a {
-        width: 100px;
-    }
-}
 
 
 

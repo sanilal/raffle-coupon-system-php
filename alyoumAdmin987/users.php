@@ -1,4 +1,4 @@
-<?php $active="submissions"; 
+<?php $active="users"; 
 ob_start();
 include("includes/conn.php"); 
 ?>

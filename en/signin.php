@@ -11,6 +11,17 @@ date_default_timezone_set('Asia/Riyadh');
 // echo "The time is " . date("h:i:sa"); 
 
 // Check if the remember_me cookie is set
+if(isset($_GET['user_id'])) {
+    $alreadyRegistered = true;
+} else {
+    $alreadyRegistered = false;
+}
+
+if(isset($_GET['nu'])) {
+    $newuser = true;
+} else {
+    $newuser = false;
+}
 
 include("../alyoumAdmin987/includes/conn.php"); 
 
@@ -98,7 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit();
     } else {
-        echo "Invalid login credentials";
+        $invalidLogin = true;
+      //  echo "Invalid login credentials";
     }
 }
 ?>
@@ -111,6 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
 <body class="signin">
 <div class="outer-wraper">
@@ -123,6 +136,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                 <div class="signin-wraper">
                 <div class="signinform">
+                    <?php if($alreadyRegistered === true) {?>
+                    <p class="lead">Email or mobile number is already registered.</p>
+                    <?php } 
+                    if($newuser === true) { ?>
+                        <p class="lead">Thank you for registering!</p>
+                    <?php } ?>
                     <h2>Login to your account</h2>
                 <form method="post" action="" name="signin_form" id="signin_form">
                     <label for="email">Email
@@ -142,6 +161,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     
                 </form>
+                <?php if(($invalidLogin)) {?>
+                        <p class="invalid-login">Invalid login credentials </p>
+                    <?php }?>
             </div>
                 </div>
         </div>

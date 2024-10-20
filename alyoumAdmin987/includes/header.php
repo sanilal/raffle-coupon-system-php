@@ -21,7 +21,7 @@ else if($_SESSION['user_id']=="" || $_SESSION['user_id']==NULL){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>alyoum | Admin panel </title>
+    <title>Alyoum | Admin panel </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -62,9 +62,9 @@ else if($_SESSION['user_id']=="" || $_SESSION['user_id']==NULL){
         <!-- Logo -->
         <a href="home.php" class="logo admin-logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"> <img src="dist/img/logo.webp" style="max-width: 120px; height:auto;" alt=""/></span>
+          <span class="logo-mini"> <img src="dist/img/logo.webp" style="max-width: 65px; height:auto;" alt=""/></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><img src="dist/img/logo.webp" style="max-width: 120px; height:auto;" class="img-responsive" alt=""/></span>
+          <span class="logo-lg"><img src="dist/img/logo.webp" style="max-width: 65px; height:auto;" class="img-responsive" alt=""/></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
