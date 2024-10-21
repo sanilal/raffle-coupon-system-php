@@ -11,23 +11,6 @@ date_default_timezone_set('Asia/Riyadh');
 // echo "The time is " . date("h:i:sa"); 
 
 // Check if the remember_me cookie is set
-if(isset($_GET['user_id'])) {
-    $alreadyRegistered = true;
-} else {
-    $alreadyRegistered = false;
-}
-
-if(isset($_GET['nu'])) {
-    $newuser = true;
-} else {
-    $newuser = false;
-}
-
-if(isset($_GET['reset'])) {
-    $reset = true;
-} else {
-    $reset = false;
-}
 
 include("../alyoumAdmin987/includes/conn.php"); 
 
@@ -69,7 +52,7 @@ if (isset($_COOKIE['remember_me'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = mysqli_real_escape_string($url, $_POST['user_id']);
+    $email = mysqli_real_escape_string($url, $_POST['email']);
 	$pass = mysqli_real_escape_string($url, $_POST['password']);
 
     $password=md5($pass);
@@ -77,14 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // var_dump($remember); die;
 
-     // Check if user_id is an email or a mobile number
-     if (filter_var($user_id, FILTER_VALIDATE_EMAIL)) {
-        // user_id is an email
-        $query = "SELECT * FROM `".TB_pre."users` WHERE `email`='$user_id'";
-    } else {
-        // Assume it's a mobile number
-        $query = "SELECT * FROM `".TB_pre."users` WHERE `mobile`='$user_id'";
-    }
+    $query = "SELECT * FROM `".TB_pre."users` WHERE `email`='$email'";
     $result = mysqli_query($url, $query) or die(mysqli_error($url));
     $user = mysqli_fetch_assoc($result);
 
@@ -122,8 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit();
     } else {
-        $invalidLogin = true;
-      //  echo "Invalid login credentials";
+        echo "Invalid login credentials";
     }
 }
 ?>
@@ -134,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
@@ -149,41 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                 <div class="signin-wraper">
                 <div class="signinform">
-                    <?php if($alreadyRegistered === true) {?>
-                    <p class="lead">Email or mobile number is already registered.</p>
-                    <?php } 
-                    if($newuser === true) { ?>
-                        <p class="lead">Thank you for registering!</p>
-                    <?php } 
-                    if($reset === true) {?> 
-                     <p class="lead" >Password updated successfully!</p>
-                <?php } ?>
-                   
-
-
-                    <h2>Login to your account</h2>
-                <form method="post" action="" name="signin_form" id="signin_form">
-                    <label for="email">Email / Mobile
-                    <input type="text" name="user_id" required></label>
-                    <label for="password">Password
-                    <input type="password" name="password" required></label>
-                    <div class="login-footer">
-                        <div class="remembercheck">
-                            <label><input type="checkbox" name="remember_me">Remember me</label>
-                        </div>
-                        <div class="forgetps">
-                            <a href="forget_password.php">Forgot Password?</a>
-                            <button class="btn btn-primary" type="submit">Login</button>
-                        </div>
-                        
-                    </div>
-                    
-                    
-                </form>
-                <?php if(isset($invalidLogin)) {?>
-                        <p class="invalid-login">Invalid login credentials </p>
-                    <?php }?>
-            </div>
+                    <h2>You are Logged Out</h2>
+                    <a class="btn btn-primary" href="signin.php">Login</a>
                 </div>
         </div>
         <div class="signinfooter">

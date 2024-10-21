@@ -132,13 +132,13 @@ if(!$passwordMismatch) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/style-rtl.css">
+    <link rel="stylesheet" href="../assets/css/responsive-rtl.css">
 
 </head>
 <body class="signup">
@@ -148,39 +148,39 @@ if(!$passwordMismatch) {
     </div>
         <div class="welcome text-black fontsize15 d-flex flex-column">
             <div class="renovate">
-                <img src="../assets/images/renovate-your-kitchen-inner-en.png" alt="Renovate your kitchen with Alyoum Chicken">
+                <img src="../assets/images/renovate-your-kitchen-inner-ar.webp" alt="Renovate your kitchen with Alyoum Chicken">
             </div>
         </div>
         <div class="signin-wraper">
         <div class="signupform">
-            <h2>Register new account</h2>
+            <h2>تسجيل حساب جديد</h2>
                 <form method="post" action="" name="signup_form" id="signup_form">
                     <div class="row-50">
-                        <label class="col" for="fname">First Name<span class="star">*</span><input type="text" name="fname" required id="first-name"></label>
+                        <label class="col" for="fname"><span class="star">*</span>الاسم<input type="text" name="fname" required id="first-name"></label>
                        
-                        <label class="col" for="lname">Last Name<span class="star text-white">*</span><input type="text" name="lname" id="last-name"></label>
+                        <label class="col" for="lname"><span class="star text-white">*</span>الاسم الأخير<input type="text" name="lname" id="last-name"></label>
                         
                     </div>
                     <div id="fname-err"></div>
                     <div id="lname-err"></div>
                     <div class="row">
-                        <label for="address">Address<span class="star">*</span><textarea name="address" id="address" required></textarea id='address'></label>
+                        <label for="address"><span class="star">*</span>العنوان<textarea name="address" id="address" required></textarea id='address'></label>
                         <div id="address-err"></div>
                     </div>
                     <div class="row">
-                        <label for="region">Region<span class="star">*</span><input type="text" name="region" required id="city"></label>
+                        <label for="region"><span class="star">*</span>المنطقة<input type="text" name="region" required id="city"></label>
                         <div id="city-err"></div>
                     </div>
                     <div class="row">
-                        <label for="mobile">Mobile Number<span class="star">*</span><input type="tel" name="mobile" required id="inputNumber"></label>
+                        <label for="mobile"><span class="star">*</span>رقم الجوال<input type="tel" name="mobile" required id="inputNumber"></label>
                         <div id="mobile-err"></div>
                     </div>
                     <div class="row">
-                        <label for="email">Email<span class="star">*</span><input type="email" name="email" required id="inputEmail4"></label>
+                        <label for="email"><span class="star">*</span>البريد الإلكتروني<input type="email" name="email" required id="inputEmail4"></label>
                         <div id="email-err"></div>
                     </div>
                     <div class="row">
-                        <label for="password">Password<span class="star">*</span><input type="password" name="password" required id="password"></label>
+                        <label for="password"><span class="star">*</span>كلمة المرور<input type="password" name="password" required id="password"></label>
                         <div id="password-err">
                             <div id="pswrderrr"></div>
                             <ul id="password-requirements" style="display: none;">
@@ -194,20 +194,20 @@ if(!$passwordMismatch) {
 
                     </div>
                     <div class="row">
-                        <label for="cpassword">Confirm Password<span class="star">*</span><input type="password" name="cpassword" required id="cpassword"></label>
+                        <label for="cpassword"><span class="star">*</span>Confirm Password<input type="password" name="cpassword" required id="cpassword"></label>
                         <div id="confirm-password-msg"></div>
                     </div>
-                    <div class="row"><div class="req-fields"><span class="star">*</span>required fields</div></div>
+                    <div class="row"><div class="req-fields"><span class="star">*</span>الحقول المطلوبة </div></div>
                     <div class="registerbtns">
-                        <button type="submit" class="btn btn-primary" id="submit-button">Create Account</button>
-                        <button type="reset" class="btn btn-gray">Cancel</button>
+                        <button type="reset" class="btn btn-gray">إلغاء</button>
+                        <button type="submit" class="btn btn-primary" id="submit-button">إنشاء حساب</button>
                     </div>
                 </form>
         </div>
         </div>
         <div class="signupfooter">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
 </div>

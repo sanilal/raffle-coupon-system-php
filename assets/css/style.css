@@ -573,8 +573,8 @@ input.highlighted, textarea.highlighted {
     border: 1px solid #a20000 !important;
 }
 
-.successmsg, .successmsg .errstatus {
-    color: green;
+.successmsg, .successmsg .errstatus, .green {
+    color: green !important;
 }
 
 #password-requirements li {

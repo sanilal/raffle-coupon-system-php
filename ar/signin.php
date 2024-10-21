@@ -130,13 +130,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/style-rtl.css">
+    <link rel="stylesheet" href="../assets/css/responsive-rtl.css">
 </head>
 <body class="signin">
 <div class="outer-wraper">
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="welcome text-black fontsize15 d-flex flex-column">
         <div class="renovate">
-                <img src="../assets/images/renovate-your-kitchen-inner-en.png" alt="Renovate your kitchen with Alyoum Chicken">
+                <img src="../assets/images/renovate-your-kitchen-inner-ar.webp" alt="Renovate your kitchen with Alyoum Chicken">
                </div>
                 <div class="signin-wraper">
                 <div class="signinform">
@@ -161,19 +161,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    
 
 
-                    <h2>Login to your account</h2>
+                    <h2>تسجيل الدخول إلى حسابك</h2>
                 <form method="post" action="" name="signin_form" id="signin_form">
                     <label for="email">Email / Mobile
                     <input type="text" name="user_id" required></label>
-                    <label for="password">Password
+                    <label for="password">كلمة المرور
                     <input type="password" name="password" required></label>
                     <div class="login-footer">
                         <div class="remembercheck">
-                            <label><input type="checkbox" name="remember_me">Remember me</label>
+                            <label><input type="checkbox" name="remember_me">حفظ المعلومات</label>
                         </div>
                         <div class="forgetps">
-                            <a href="forget_password.php">Forgot Password?</a>
-                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a href="forget_password.php">نسيت كلمة المرور  </a>
+                            <button class="btn btn-primary" type="submit">تسجيل الدخول</button>
                         </div>
                         
                     </div>
@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="signinfooter">
                 <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
     
