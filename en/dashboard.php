@@ -213,23 +213,37 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
                             <h2 id="leaderBoadButton">+ Leader Board</h2>
                         </div>
                         <div class="winners" id="winners">
-                                <div class="winner-row">
+                            <!-- <div class="winner-row">
                                     <div class="winner-col">Name</div>
-                                    <div class="winner-col">Reason</div>
                                     <div class="winner-col">Position</div>
-                                </div>
+                                </div> -->
+                            <?php $lb_row=mysqli_query($url,"select * from `".TB_pre."leaderboards` WHERE `active`=1"); 
+                            $i = 1;
+                                while($lb_res = mysqli_fetch_object($lb_row)) {
+                            ?>
                                 <div class="winner-row">
-                                    <div class="winner-col">Name</div>
-                                    <div class="winner-col">Reason</div>
-                                    <div class="winner-col">Position</div>
+                                    <div class="winner-col"><?php echo $i++; ?></div>
+                                    <div class="winner-col"><?php
+                                    $user_id = $lb_res->user;
+                                        $user_query = "SELECT first_name, last_name FROM `".TB_pre."users` WHERE id='$user_id'";
+                                        $user_result = mysqli_query($url, $user_query) or die(mysqli_error($url));
+
+                                        if ($user_row = mysqli_fetch_assoc($user_result)) {
+                                            // Extract first_name and last_name from the result
+                                            $first_name = $user_row['first_name'];
+                                            $last_name = $user_row['last_name'];
+                                            
+                                            // Echo the first name and last name in the table
+                                            echo $first_name . " " . $last_name;
+                                        } else {
+                                            // Handle case where no user is found
+                                            echo "<td>User not found</td>";
+                                        }
+ ?>
+                                    </div>
                                 </div>
-                                <div class="winner-row">
-                                    <div class="winner-col">Name</div>
-                                    <div class="winner-col">Reason</div>
-                                    <div class="winner-col">Position</div>
-                                </div>
-                                
-                            </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
                 

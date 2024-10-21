@@ -827,6 +827,9 @@ p.errormsg {
     background-size: contain;
      animation: fadeIn 7s ease-in-out 1, zoomInOut 5s infinite ease-in-out;
 }
+h1#ticketNumber {
+    font-family:Almarai Bold;
+}
 .ticket-number::after {
     content: "";
     position: absolute;

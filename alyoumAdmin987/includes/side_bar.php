@@ -96,7 +96,32 @@
                  
                  </ul>
            
-             </li>
+            </li>
+
+            <li class="treeview <?php if($active=="leaderboard"){ echo "active";} ?>">
+              <a href="#">
+                <i class="fa fa-trophy"></i>
+                <span>Loaderboards</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              <li>
+                        <a href="leaderboards.php">
+                            <i class="fa fa-braille"></i>
+                            <span>View Leaderboards</span>
+                        </a>
+                  </li>
+                  <li>
+                        <a href="add-leaderboard.php">
+                            <i class="fa fa-gift"></i>
+                            <span>Add Leaderboard</span>
+                        </a>
+                  </li>
+                 
+                 
+                 </ul>
+           
+            </li>
      
        		
           </ul>
