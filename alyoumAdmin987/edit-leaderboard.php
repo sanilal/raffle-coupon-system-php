@@ -61,17 +61,17 @@
 
 
 <?php  
- $startdate_query = "SELECT `c_start`, `c_ends` FROM `".TB_pre."zone`";
- $startdate_r = mysqli_query($url, $startdate_query) or die(mysqli_error($url));
- $startdate_assoc = mysqli_fetch_assoc( $startdate_r );
-$startdate=$startdate_assoc['c_start'];
-$enddate=$startdate_assoc['c_ends'];
-
 // Users query
 $users_query = "SELECT `id`, `first_name`, `last_name`, `email` FROM `".TB_pre."users`";
 $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 
 $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderboards` WHERE `id`=".$_GET['id']));
+
+$userId = mysqli_real_escape_string($url, $pr_res->user);
+$currentUserRes = mysqli_fetch_object(mysqli_query($url, "SELECT * FROM `".TB_pre."users` WHERE `id` = '$userId'"));
+
+
+// var_dump("SELECT * FROM `".TB_pre."users` WHERE `id` = '$userId'"); die;
 
 
  if(isset($_REQUEST['btnadd'])){
@@ -182,7 +182,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderbo
                       // Fetch each user and display in the dropdown
                       while($users_assoc = mysqli_fetch_object($users_r)) { 
                         ?>
-                        <option value="<?php echo $users_assoc->id; ?>" <?php if($pr_res->id === $users_assoc->id) { echo "selected"; }?>>
+                        <option value="<?php echo $users_assoc->id; ?>" <?php if($currentUserRes->id === $users_assoc->id) { echo "selected"; }?>>
                           <?php echo $users_assoc->first_name . ' ' . $users_assoc->last_name . ' &lt;' . trim($users_assoc->email) . '&gt;'; ?>
                         </option>
                       <?php } ?>
@@ -201,7 +201,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderbo
                       <label>Select Start Date</label>
 					  <?php
 					  ?>
-                      <input type="date" class="form-control" placeholder="Start Date" name="n_start_date" id="n_start_date" min="<?php echo $startdate; ?>" max="<?php echo $enddate; ?>" />
+                      <input type="date" class="form-control" placeholder="Start Date" name="n_start_date" id="n_start_date" min="<?php echo $startdate; ?>" max="<?php echo $enddate; ?>" value="<?php echo $pr_res->start_date; ?>" />
 					  </div>
 
                     
@@ -210,17 +210,17 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderbo
                       <label>Select End Date</label>
 					  <?php
 					  ?>
-                      <input type="date" class="form-control" placeholder="End Date" name="n_end_date" id="n_end_date" min="<?php echo $startdate; ?>" max="<?php echo $enddate; ?>"  />
+                      <input type="date" class="form-control" placeholder="End Date" name="n_end_date" id="n_end_date" min="<?php echo $startdate; ?>" max="<?php echo $enddate; ?>" value="<?php echo $pr_res->end_date; ?>" />
 					  </div>
 
             <!-- Form Group for Active/Inactive Toggle -->
 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
   <label for="status">Status</label>
   <label class="switch">
-    <input type="checkbox" id="status-toggle" name="status" value="1">
+    <input type="checkbox" id="status-toggle" name="status" value="1" <?php if($pr_res->active==1){ echo "checked"; }?>>
     <span class="slider"></span>
   </label>
-  <span id="status-label" style="margin-left: 10px;">Inactive</span>
+  <span id="status-label" style="margin-left: 10px;"><?php if($pr_res->active==1){ echo "Active"; }else{echo "Inactive"; }?></span>
 </div>
                    
                    
@@ -228,7 +228,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderbo
 					
 					 <div class="row">
 					  <div class="box-footer col-md-12 m-r-0" style="padding: 10px 0;">
-                    	<button type="submit" class="btn btn-primary" name="btnadd">Add Notification</button>
+                    	<button type="submit" class="btn btn-primary" name="btnadd">Update Leaderboard</button>
                   	  </div>
 				  </div>
 					</div>
@@ -249,57 +249,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."leaderbo
 			$sql="select * from `".TB_pre."leaderboards` WHERE `active` = 1 ORDER BY `id` DESC ";
 			$r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
 			?>
-		<div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover center-table" style="width: 100%; max-width: 650px; float: left;">
-                    <thead>
-                      <tr>
-                      <th>No.</th>
-                      <th>User</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-					$i = 1;
-					while($res = mysqli_fetch_array($r1)){ ?>
-                      <tr>
-                        <td><?php echo $i++; ?></td>
-                        <?php
-// Assuming $res['user'] contains the user ID
-$user_id = $res['user'];
-
-// Query to fetch first_name and last_name from users table
-$user_query = "SELECT first_name, last_name FROM `".TB_pre."users` WHERE id='$user_id'";
-$user_result = mysqli_query($url, $user_query) or die(mysqli_error($url));
-
-if ($user_row = mysqli_fetch_assoc($user_result)) {
-    // Extract first_name and last_name from the result
-    $first_name = $user_row['first_name'];
-    $last_name = $user_row['last_name'];
-    
-    // Echo the first name and last name in the table
-    echo "<td>" . $first_name . " " . $last_name . "</td>";
-} else {
-    // Handle case where no user is found
-    echo "<td>User not found</td>";
-}
-?>
-                        <td><?php echo $res['start_date']; ?></td>
-                        <td><?php echo $res['end_date']; ?></td>
-                        
-<td>
-<a href="edit_leaderboard.php?nid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">Edit </a>
-</td>
-                      
-                      </tr>
-                      <?php }?>
-                    </tbody>
-                    <tfoot>
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
+		
             
             <!--<div class="box-footer">
             

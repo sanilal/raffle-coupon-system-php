@@ -171,7 +171,10 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
                       <tr>
                         <td><?php echo $i++; ?></td>
                         <td><?php echo $res['notification_name']; ?></td>
-                        <td><?php echo $res['notification_message']; ?></td>
+                        <td>
+                          <?php echo $res['notification_message']; ?>
+                          <?php if(isset($res['message_arabic'])) { echo $res['message_arabic']; } ?>
+                        </td>
                         <td><?php echo $res['start_date']; ?></td>
                         <td><?php echo $res['end_date']; ?></td>
                         <td>

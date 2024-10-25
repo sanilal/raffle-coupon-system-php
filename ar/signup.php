@@ -22,7 +22,7 @@ if($formSubmitted === true) {
 
 include("../alyoumAdmin987/includes/conn.php"); 
 
-$arabic=0;
+$arabic=1; 
 $currentDate = date('Y-m-d');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -122,7 +122,7 @@ if(!$passwordMismatch) {
     }
 
 } else {
-    echo "<script>alert('Password Mismatch!');</script>";
+    echo "<script>alert('عدم تطابق في كلمة المرور! ');</script>";
 }
 
   //  var_dump($date_time); die;
@@ -136,7 +136,7 @@ if(!$passwordMismatch) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
+    <title>Alyoum - SignUp</title>
     <link rel="stylesheet" href="../assets/css/style-rtl.css">
     <link rel="stylesheet" href="../assets/css/responsive-rtl.css">
 
@@ -184,17 +184,17 @@ if(!$passwordMismatch) {
                         <div id="password-err">
                             <div id="pswrderrr"></div>
                             <ul id="password-requirements" style="display: none;">
-                                <li id="length-condition"><span>✖</span> Password must be at least 6 characters long.</li>
-                                <li id="uppercase-condition"><span>✖</span> Password must contain at least one uppercase letter.</li>
-                                <li id="lowercase-condition"><span>✖</span> Password must contain at least one lowercase letter.</li>
-                                <li id="number-condition"><span>✖</span> Password must contain at least one number.</li>
-                                <li id="special-condition"><span>✖</span> Password must contain at least one special character (@, #, %, &, *, !, $).</li>
+                                <li id="length-condition"><span>✖</span> يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.  </li>
+                                <li id="uppercase-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.  </li>
+                                <li id="lowercase-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.  </li>
+                                <li id="number-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.  </li>
+                                <li id="special-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (@, #, %, &, *, !, $).  </li>
                             </ul>
                         </div>
 
                     </div>
                     <div class="row">
-                        <label for="cpassword"><span class="star">*</span>Confirm Password<input type="password" name="cpassword" required id="cpassword"></label>
+                        <label for="cpassword"><span class="star">*</span>تأكيد كلمة المرور  <input type="password" name="cpassword" required id="cpassword"></label>
                         <div id="confirm-password-msg"></div>
                     </div>
                     <div class="row"><div class="req-fields"><span class="star">*</span>الحقول المطلوبة </div></div>
@@ -214,6 +214,6 @@ if(!$passwordMismatch) {
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-<script src="../assets/scripts/register.js"></script>
+<script src="../assets/scripts/register-ar.js"></script>
 </body>
 </html>

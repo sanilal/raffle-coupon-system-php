@@ -76,6 +76,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 	$name=$_POST['nname'];	
 	$users=$_POST['users'];	
   $notification=$_POST['notification'];
+  $arabicNotification=$_POST['arabicnotification'];
 	$start_date	= $_POST['n_start_date'];
 	$end_date	= $_POST['n_end_date'];
   $active= $_POST['status'];
@@ -93,6 +94,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
   }
 
   $notification = mysqli_real_escape_string($url, $notification);
+  $arabicNotification = mysqli_real_escape_string($url, $arabicNotification);
 // var_dump($notification); die;
 
   if($active!=1) {
@@ -103,7 +105,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 	if($name!="" && $users!="" && $start_date!="" && $end_date!=""  ){
 
 		 // var_dump($multiplier); exit;
-		  $query = "INSERT INTO `".TB_pre."notifications` (`notification_name`,`notification_message`,`applicable_users`,`duration`,`start_date`,`end_date`,`active`) VALUES('$name','$notification','$userString','$duration','$start_date','$end_date','$active')";
+		  $query = "INSERT INTO `".TB_pre."notifications` (`notification_name`,`notification_message`,`message_arabic`,`applicable_users`,`duration`,`start_date`,`end_date`,`active`) VALUES('$name','$notification','$arabicNotification','$userString','$duration','$start_date','$end_date','$active')";
 		  //echo $query; exit;
 		  $r = mysqli_query($url, $query) or die(mysqli_error($url));
 		  if($r){
@@ -195,6 +197,10 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
                       <label>Notification</label>
                       <textarea class="form-control" placeholder="Enter Notification" name="notification" id="notification"></textarea>
                     </div>
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
+                      <label>Notification Arabic</label>
+                      <textarea class="form-control" placeholder="Enter Notification" name="arabicnotification" id="arabicnotification"></textarea>
+                    </div>
 				
                    
 					  </div>
@@ -277,7 +283,8 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
                           <?php 
                             $user_ids = explode(',', $res['applicable_users']); 
                             $user_ids_string = implode(',', array_map('intval', $user_ids));
-
+                           // echo $user_ids_string; die;
+if($user_ids_string==0){echo "All"; } else {
                             $userquery = "SELECT email FROM `".TB_pre."users` WHERE id IN ($user_ids_string)";
                             $userresult = mysqli_query($url, $userquery);
                            // var_dump($userresult); die;
@@ -293,6 +300,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
                               } else {
                                   echo "No users found for the given IDs.";
                               }
+                            }
                        //     echo $user_ids_string; 
                           ?>
                         </td>
@@ -328,6 +336,9 @@ $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
     CKEDITOR.replace('notification');
+    CKEDITOR.replace('arabicnotification');
+
+    
   });
   
   document.getElementById('status-toggle').addEventListener('change', function() {

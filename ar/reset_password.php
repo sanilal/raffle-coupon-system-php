@@ -37,7 +37,7 @@ if (isset($_GET['token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alyoum - Reset Password</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
@@ -53,28 +53,28 @@ if (isset($_GET['token'])) {
                 <div class="signin-wraper">
                 <?php if($invaliDToken === false) { ?>
                     <div class="signinform">
-                    <h2>Reset Your Password</h2>
+                    <h2>أعد تعيين كلمة المرور الخاصة بك  </h2>
                     <form method="post" action="" name="reset_password" id="reset_password">
-                    <label for="password">Password</label>
+                    <label for="password">كلمة المرور</label>
                         <input type="password" id="password" name="password" required>
                         <div id="pswrderrr"></div>
 
                         <div id="password-requirements" style="display: none;">
-                            <p id="length-condition"><span>✖</span> Password must be at least 6 characters long.</p>
-                            <p id="uppercase-condition"><span>✖</span> Password must contain at least one uppercase letter.</p>
-                            <p id="lowercase-condition"><span>✖</span> Password must contain at least one lowercase letter.</p>
-                            <p id="number-condition"><span>✖</span> Password must contain at least one number.</p>
-                            <p id="special-condition"><span>✖</span> Password must contain at least one special character (@, #, %, &, *, !, $).</p>
+                            <p id="length-condition"><span>✖</span> يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.  </p>
+                            <p id="uppercase-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.  </p>
+                            <p id="lowercase-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.  </p>
+                            <p id="number-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.  </p>
+                            <p id="special-condition"><span>✖</span> يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (@, #, %, &, *, !, $).  </p>
                         </div>
 
-                        <button class="btn btn-primary" type="submit" id="submit-button">Reset Password</button>
+                        <button class="btn btn-primary" type="submit" id="submit-button">إعادة تعيين كلمة المرور  </button>
                     </form>
             </div>
 
 <?php } else { ?>
-    <p class="lead">Invalid Token</p>
+    <p class="lead">رمز غير صالح  </p>
     <a href="signin.php" class="btn btn-primary sigin-btn">
-                    SIGN IN
+    تسجيل الدخول
                 </a>
     <?php } ?>
                 </div>
@@ -82,7 +82,7 @@ if (isset($_GET['token'])) {
         <div class="signinfooter">
                 <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
 

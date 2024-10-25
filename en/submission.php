@@ -45,7 +45,13 @@ if(isset($_REQUEST['btnadd'])){
     include_once("../alyoumAdmin987/classes/class.upload.php");
     $p_image=image_upload($_FILES['inputInvoice'],$invNumber."main_img".time());
 
-  //  var_dump($p_image); die;
+    if (empty($p_image)) {
+        // Display an error message and go back to the previous page
+        echo "<script>alert('MIME type can\'t be detected. Please upload a valid image.'); window.history.back();</script>";
+        exit(); // Make sure to stop the script after the redirect
+    }
+
+   // var_dump($p_image); die;
 
     $g_image="";
 		for($i=1;$i<=12;$i++){
@@ -85,7 +91,7 @@ if(isset($_REQUEST['btnadd'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alyoum - Thank you</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>

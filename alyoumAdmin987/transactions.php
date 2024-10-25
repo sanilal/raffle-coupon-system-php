@@ -20,13 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $epsilon = 0.00001; // Small tolerance for floating-point comparison
       $raffleCoupons = '';
 
+      $gw = $_POST['gwid'];
+      $gwQuery = "SELECT `prize_multiplication` FROM `" . TB_pre . "golden_week` WHERE `id` = '" . $gw . "'";
+      $prizeMultiply = mysqli_fetch_object(mysqli_query($url, $gwQuery))->prize_multiplication;
+     
       if ($invoice_value > $target_value || abs($invoice_value - $target_value) < $epsilon) {
         $raffleCoupons = floor($invoice_value / $target_value); 
       } else {
         $raffleCoupons = 0;
       }
+      if($prizeMultiply>0){ $finalRaffleCoupons=$prizeMultiply*$raffleCoupons; } else { $finalRaffleCoupons=$raffleCoupons;}
+   //   var_dump($finalRaffleCoupons); die;
       // Update the invoice value in the transaction table
-      $update_query = "UPDATE `".TB_pre."transactions` SET `invoice_value` = '$invoice_value', `raffle_coupons` = '$raffleCoupons' WHERE `id` = '$transaction_id'";
+      $update_query = "UPDATE `".TB_pre."transactions` SET `invoice_value` = '$invoice_value', `raffle_coupons` = '$finalRaffleCoupons' WHERE `id` = '$transaction_id'";
       
       if (mysqli_query($url, $update_query)) {
           // Redirect back to the same page after successful update
@@ -264,6 +270,7 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
             <input type="hidden" name="transaction_id" value="<?php echo $res['id']; ?>">
            <div class="invval-container">
             <input type="number" name="invoice_value" class="form-control" placeholder="Enter Invoice Value" step="0.01" required>
+            <input type="hidden" name="gwid" value="<?php echo $res['golden_week_id']; ?>">
             <button type="submit" name="submit_invoice" value="<?php echo $res['id']; ?>" class="btn btn-success">Update</button>
            </div>
         </form>
@@ -273,10 +280,7 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
 
              <td><?php
             $raffleCoupons = strval($res['raffle_coupons']);
-            $gw = $res['golden_week_id'];
-            $gwQuery = "SELECT `prize_multiplication` FROM `" . TB_pre . "golden_week` WHERE `id` = '" . $gw . "'";
-            $prizeMultiply = mysqli_fetch_object(mysqli_query($url, $gwQuery))->prize_multiplication;
-            if($prizeMultiply>0){ $raffleCoupons=$prizeMultiply*$raffleCoupons; }
+           
 
             // echo($prizeMultiply); die;
             if($raffleCoupons > 0) { echo $raffleCoupons; } else { if($res['invoice_value']<1) { ?>
@@ -284,7 +288,8 @@ $r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
             <?php } else {echo '0'; } }?>
              </td>
              <td><?php
-            if($gw > 0) { echo "Yes"; } else {  ?>
+             $resgw = $res['golden_week_id'];
+            if($resgw > 0) { echo "Yes"; } else {  ?>
             No
             <?php }?>
              </td>

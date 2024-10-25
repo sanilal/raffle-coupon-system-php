@@ -146,6 +146,14 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
                     </div>
             </div>
             <div class="row">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
+                      <label>Notification</label>
+                      <textarea class="form-control" placeholder="Enter Notification" name="arabicnotification" id="arabicnotification">
+                        <?php echo $pr_res->notification_arabic; ?>
+                      </textarea>
+                    </div>
+            </div>
+            <div class="row">
               <div class="form-group col-md-6">
                             <!-- Form Group for Active/Inactive Toggle -->
 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">

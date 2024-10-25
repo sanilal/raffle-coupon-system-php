@@ -24,6 +24,7 @@ include_once('../inc/header.php');
 // }
 
 $userid = $_SESSION['user_id'];
+//var_dump($userid);
 $userquery = "select * from `".TB_pre."users` WHERE `id` = '$userid' ";
 $userr1=mysqli_query($url,$userquery) or die("Failed".mysqli_error($url));
 $userRes = mysqli_fetch_array($userr1);
@@ -45,10 +46,11 @@ $multiplier = $gwRes['prize_multiplication'];
     $transactionSql="select * from `".TB_pre."transactions` WHERE `user_id` = '$userid' ORDER BY `id` DESC LIMIT 1 ";
     $transactionR1=mysqli_query($url,$transactionSql) or die("Failed".mysqli_error($url));
     $transactionRow = mysqli_fetch_array($transactionR1);
-
+    
     $transactionTime=$transactionRow['date'];
     $currentTime = date('Y-m-d H:i:s');
     $transactiongwId=$transactionRow['golden_week_id'];
+  //  var_dump($transactiongwId); die;
 
    // Create DateTime objects
 $transactionDateTime = new DateTime($transactionTime);
@@ -56,17 +58,27 @@ $currentDateTime = new DateTime($currentTime);
 
 // Calculate the difference
 $timeDifference = $currentDateTime->diff($transactionDateTime);
+// var_dump($timeDifference); die;
 
 // Convert the difference to total minutes
 $minutesDifference = ($timeDifference->days * 24 * 60) + ($timeDifference->h * 60) + $timeDifference->i;
 // print_r($minutesDifference); die;
 if($transactiongwId === $gwRes['id']) {
     $gwNotification = $gwRes['notification'];
-    if ($minutesDifference < 60) {
+  //  var_dump($gwNotification); die;
+    if ($minutesDifference < 20) {
         $gwSuccessNotification = "Congratulations!
 Your chances in the raffle just doubled!";
     }
 } 
+
+
+// general / User Specific notifications
+
+$notificationquery = "select * from `".TB_pre."notifications` WHERE `applicable_users` = '$userid' OR `applicable_users` = 0";
+$notificationr1=mysqli_query($url,$notificationquery) or die("Failed".mysqli_error($url));
+$notificationRes = mysqli_fetch_array($notificationr1);
+$customNoti=$notificationRes['notification_message'];
 
 
 // Check if the time difference is less than 1 hour
@@ -75,13 +87,13 @@ Your chances in the raffle just doubled!";
 // } else {
 //     echo "The time difference is more than 1 hour.";
 // }
-
+//var_dump($userid); die;
 $rfcquery = "select SUM(raffle_coupons) from `".TB_pre."transactions` WHERE `user_id` = '$userid' ";
 $rfcr1=mysqli_query($url,$rfcquery) or die("Failed".mysqli_error($url));
 $rfcRow = mysqli_fetch_array($rfcr1);
 
 // Access the sum value
-$rfcSum = $rfcRow['SUM(raffle_coupons)'];
+$rfcSum = $rfcRow['SUM(raffle_coupons)']+1;
 
 // var_dump($rfcSum);
 
@@ -95,7 +107,7 @@ $rfcSum = $rfcRow['SUM(raffle_coupons)'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alyoum - Dashboard</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
@@ -109,15 +121,14 @@ $rfcSum = $rfcRow['SUM(raffle_coupons)'];
             <div class="dashboard-welcome mt-4">
                 <?php if(!isset($gwSuccessNotification)) { ?>
                 <h1 class="d_name">Welcome <?php echo $fname; ?></h1>
+                <?php if(isset($customNoti)) { echo $customNoti; } ?>
                 <?php if(isset($gwNotification)) { echo $gwNotification; } ?>
                 <?php } else {?>
                 <div class="dashoboard-notifications">
-                    <?php if(isset($gwNotification)) { ?>
                     <div class="lead-notification text-bold">
                         <?php echo $gwSuccessNotification; ?>
                     </div>
-                    <?php } 
-                    if(isset($gwNotification)) { echo $gwNotification; } ?>
+                    <?php if(isset($gwNotification)) { echo $gwNotification; } ?>
                     
                 </div>
                 <?php } ?>

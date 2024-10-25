@@ -66,7 +66,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Golden Week
+            Leaderboards
           </h1>
           
           <!--<ol class="breadcrumb">
@@ -83,7 +83,7 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
 
 
 			<?php
-			$sql="select * from `".TB_pre."golden_week` WHERE `active` = 1 ORDER BY `id` DESC ";
+			$sql="select * from `".TB_pre."leaderboards` WHERE `active` = 1 ORDER BY `id` DESC ";
 			$r1=mysqli_query($url,$sql) or die("Failed".mysqli_error($url));
 			?>
 		<div class="box-body">
@@ -91,11 +91,9 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
                     <thead>
                       <tr>
                       <th>No.</th>
-                      <th>Name</th>
+                      <th>user</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Multiplier</th>
-                        <th>Notification</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -105,14 +103,31 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
 					while($res = mysqli_fetch_array($r1)){ ?>
                       <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo $res['name']; ?></td>
+                        <?php
+                          // Assuming $res['user'] contains the user ID
+                          $user_id = $res['user'];
+
+                          // Query to fetch first_name and last_name from users table
+                          $user_query = "SELECT first_name, last_name FROM `".TB_pre."users` WHERE id='$user_id'";
+                          $user_result = mysqli_query($url, $user_query) or die(mysqli_error($url));
+
+                          if ($user_row = mysqli_fetch_assoc($user_result)) {
+                              // Extract first_name and last_name from the result
+                              $first_name = $user_row['first_name'];
+                              $last_name = $user_row['last_name'];
+                              
+                              // Echo the first name and last name in the table
+                              echo "<td>" . $first_name . " " . $last_name . "</td>";
+                          } else {
+                              // Handle case where no user is found
+                              echo "<td>User not found</td>";
+                          }
+                          ?>
                         <td><?php echo $res['start_date']; ?></td>
                         <td><?php echo $res['end_date']; ?></td>
-                        <td><?php echo $res['prize_multiplication']; ?></td>
-                        <td><?php echo $res['notification']; ?></td>
                         
 <td>
-<a href="goldenweek.php?gwid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View</a>
+<a href="edit-leaderboard.php?id=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View</a>
 </td>
                       
                       </tr>

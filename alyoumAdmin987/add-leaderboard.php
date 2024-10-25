@@ -225,7 +225,7 @@ $users_r = mysqli_query($url, $users_query) or die(mysqli_error($url));
 					
 					 <div class="row">
 					  <div class="box-footer col-md-12 m-r-0" style="padding: 10px 0;">
-                    	<button type="submit" class="btn btn-primary" name="btnadd">Add Notification</button>
+                    	<button type="submit" class="btn btn-primary" name="btnadd">Add Leaderboard</button>
                   	  </div>
 				  </div>
 					</div>

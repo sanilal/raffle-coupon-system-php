@@ -98,18 +98,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit();
     } else {
-        echo "Invalid login credentials";
+        echo "بيانات تسجيل الدخول غير صحيحة  ";
     }
 }
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alyoum - Logout</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
@@ -124,14 +124,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                 <div class="signin-wraper">
                 <div class="signinform">
-                    <h2>You are Logged Out</h2>
-                    <a class="btn btn-primary" href="signin.php">Login</a>
+                    <h2>تم تسجيل خروجك </h2>
+                    <a class="btn btn-primary" href="signin.php">تسجيل الدخول</a>
                 </div>
         </div>
         <div class="signinfooter">
                 <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
     

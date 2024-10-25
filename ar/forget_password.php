@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alyoum - Forget Password</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
@@ -128,24 +128,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                 <div class="signin-wraper">
                 <div class="signinform">
-                    <h2>Reset Your Password</h2>
+                    <h2>أعد تعيين كلمة المرور الخاصة بك  </h2>
                     <?php if(isset($mailSent)) { ?>
-                        <p class="lead">Please check your email. We've sent a password reset link to the registered email address.</p>
+                        <p class="lead">يرجى التحقق من بريدك الإلكتروني. لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى البريد الإلكتروني المسجل.  </p>
                         <a href="signin.php" class="btn btn-primary sigin-btn">
-                    SIGN IN
+                        تسجيل الدخول
                 </a>
                    <?php } elseif(isset($noUser)) { ?>
-                        <p class="lead">Please verify your email address. It seems you may have used a different one to register. The email provided doesn't exist in our records. </p>
+                        <p class="lead">يرجى التحقق من عنوان بريدك الإلكتروني. يبدو أنك استخدمت عنوانًا مختلفًا للتسجيل. البريد الإلكتروني المدخل غير موجود في سجلاتنا  </p>
                         <a href="signin.php" class="btn btn-primary sigin-btn">
-                    SIGN IN
+                        تسجيل الدخول
                 </a>
 
                     <?php } else { ?>
                     <form method="post" action="" name="forgot_password" id="forgot_password">
-                        <label for="email">Enter your email
+                        <label for="email" title="Enter your email ">أدخل بريدك الإلكتروني
                             <input type="email" name="email" required>
                         </label>
-                        <button class="btn btn-primary" type="submit">Send Password Reset Link</button>
+                        <button class="btn btn-primary" type="submit">إرسال رابط إعادة تعيين كلمة المرور  </button>
                     </form>
                     <?php } ?>
             </div>
@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="signinfooter">
                 <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
 </div>

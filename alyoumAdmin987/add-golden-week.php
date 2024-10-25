@@ -23,16 +23,21 @@ $enddate=$startdate_assoc['c_ends'];
 	$end_date	= $_POST['gw_end_date'];
 	$multiplier=$_POST['multiplier'];
   $notification=$_POST['notification'];
+  $arabicnotification=$_POST['arabicnotification'];
   $active= $_POST['status'];
 // var_dump($notification); die;
   if($active!=1) {
     $active =0;
   }
 
+  
+  $notification = mysqli_real_escape_string($url, $notification);
+  $arabicNotification = mysqli_real_escape_string($url, $arabicNotification);
+
 	if($name!="" && $start_date!="" && $end_date!="" && $multiplier!=""  ){
 
 		 // var_dump($multiplier); exit;
-		  $query = "INSERT INTO `".TB_pre."golden_week` (`name`,`start_date`,`end_date`,`prize_multiplication`,`notification`,`active`) VALUES('$name','$start_date','$end_date','$multiplier','$notification','$active')";
+		  $query = "INSERT INTO `".TB_pre."golden_week` (`name`,`start_date`,`end_date`,`prize_multiplication`,`notification`,`notification_arabic`,`active`) VALUES('$name','$start_date','$end_date','$multiplier','$notification','$arabicnotification','$active')";
 		 // echo $query; exit;
 		  $r = mysqli_query($url, $query) or die(mysqli_error($url));
 		  if($r){
@@ -184,6 +189,12 @@ this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this
                     </div>
             </div>
             <div class="row">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
+                      <label>Notification</label>
+                      <textarea class="form-control" placeholder="Enter Notification" name="arabicnotification" id="arabicnotification"></textarea>
+                    </div>
+            </div>
+            <div class="row">
               <div class="form-group col-md-6">
                             <!-- Form Group for Active/Inactive Toggle -->
 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 m-r-0">
@@ -199,7 +210,7 @@ this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this
 					
 					 <div class="row">
 					  <div class="box-footer col-md-12 m-r-0" style="padding: 10px 0;">
-                    	<button type="submit" class="btn btn-primary" name="btnadd">Add Prize</button>
+                    	<button type="submit" class="btn btn-primary" name="btnadd">Add Golden Week</button>
                   	  </div>
 				  </div>
 					</div>
@@ -275,6 +286,8 @@ $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
     CKEDITOR.replace('notification');
+    CKEDITOR.replace('arabicnotification');
+    
   });
 
 $('#countryname').on('change', function(){

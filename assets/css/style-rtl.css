@@ -863,12 +863,29 @@ h1#ticketNumber {
     text-align: center;
 }
 .dashboard-main-tabs ul {
-    width: 85%;
+    width: 425px;
+    max-width: 85%;
      list-style: none;
      display: flex;
      justify-content: space-between;
      margin: auto auto 2rem auto;
      border: 1px solid var(--bg-gray);
+}
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #006a38;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    background-color: #004d27;
+}
+
+#file-chosen {
+    margin-left: 10px;
 }
 .dashboard-main-tabs ul li {
     padding: 1rem;
@@ -996,7 +1013,7 @@ tr.tranaction:nth-child(even) {
 .thanks-wraper h2 {
     color: var(--yellow);
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 3.8rem;
     margin-bottom: 2rem;
 }

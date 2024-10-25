@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Alyoum - Sign In</title>
     <link rel="stylesheet" href="../assets/css/style-rtl.css">
     <link rel="stylesheet" href="../assets/css/responsive-rtl.css">
 </head>
@@ -150,20 +150,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="signin-wraper">
                 <div class="signinform">
                     <?php if($alreadyRegistered === true) {?>
-                    <p class="lead">Email or mobile number is already registered.</p>
+                    <p class="lead">البريد الإلكتروني أو رقم الجوال مسجل مسبقًا  </p>
                     <?php } 
                     if($newuser === true) { ?>
-                        <p class="lead">Thank you for registering!</p>
+                        <p class="lead">شكرًا لتسجيلك!  </p>
                     <?php } 
                     if($reset === true) {?> 
-                     <p class="lead" >Password updated successfully!</p>
+                     <p class="lead" >تم تحديث كلمة المرور بنجاح!  </p>
                 <?php } ?>
                    
 
 
                     <h2>تسجيل الدخول إلى حسابك</h2>
                 <form method="post" action="" name="signin_form" id="signin_form">
-                    <label for="email">Email / Mobile
+                    <label for="email">البريد الإلكتروني / الجوال
                     <input type="text" name="user_id" required></label>
                     <label for="password">كلمة المرور
                     <input type="password" name="password" required></label>
@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                 </form>
                 <?php if(isset($invalidLogin)) {?>
-                        <p class="invalid-login">Invalid login credentials </p>
+                        <p class="invalid-login">بيانات تسجيل الدخول غير صحيحة   </p>
                     <?php }?>
             </div>
                 </div>

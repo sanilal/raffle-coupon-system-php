@@ -21,10 +21,9 @@
     }
     .ticket-number {
         font-size: 4rem;
+        margin-bottom: 1rem;
     }
-    .ticket-text {
-        margin-top: -2.6rem;
-    }
+   
     .ticket-text h2 {
         font-size: 2.3rem;
     }
@@ -47,6 +46,7 @@
 
 
 @media only screen and (min-width: 768px) { 
+   
     
     .form-page .win-cash {
         margin: 3rem auto;
@@ -91,6 +91,9 @@
 
 }
 @media only screen and (max-width: 767px) { 
+    .ticket-text {
+        margin-top: -1rem !important;
+    }
     .form-page .win-cash {
         margin: 1rem auto;
     }

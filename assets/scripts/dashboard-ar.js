@@ -9,6 +9,19 @@ const rootUrl = window.location.origin;
 
 const invoiceUrl = `${rootUrl}/inc/ajax-invoice-check.php`;
 
+
+const inputInvoice = document.getElementById('inputInvoice');
+    const fileChosen = document.getElementById('file-chosen');
+
+    inputInvoice.addEventListener('change', function(){
+        if (inputInvoice.files.length > 0) {
+            fileChosen.textContent = inputInvoice.files[0].name;
+        } else {
+            fileChosen.textContent = "لم يتم اختيار ملف"; // Arabic for "No file chosen"
+        }
+    });
+
+
 // Function to toggle active class between elements
 function toggleActive(elementToActivate, elementsToDeactivate, triggerButton) {
     elementToActivate.classList.add('active');
@@ -31,9 +44,9 @@ leaderBoadButton.addEventListener('click', () => {
 
     // Toggle the + and - symbol
     if (leaderBoadButton.textContent.includes('+')) {
-        leaderBoadButton.textContent = '- Leader Board';
+        leaderBoadButton.textContent = 'قائمة المتصدرين -';
     } else {
-        leaderBoadButton.textContent = '+ Leader Board';
+        leaderBoadButton.textContent = 'قائمة المتصدرين +';
     }
 });
 
@@ -73,7 +86,7 @@ $('#inputInvoice').on('change', function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
     if (!allowedExtensions.exec(inputInvoice)) {
-        $('#invoice-err').html('<p class="errormsg">Invalid file type! Please select a JPG, JPEG, PNG, or GIF image.</p>');
+        $('#invoice-err').html('<p class="errormsg">نوع الملف غير صالح! يرجى اختيار صورة بصيغة JPG أو JPEG أو PNG أو GIF  </p>');
         $(this).val(''); // Clear the input field
         return false;
     } else {
@@ -86,7 +99,7 @@ function validateInvoice() {
     const invoice = $('#inputInvoice').val(); // Get the value of the invoice input field
 
     if (invoice.length < 1) {
-        $('#invoice-err').html('<p class="errormsg">Please upload a picture in jpg/png/gif format</p>');
+        $('#invoice-err').html('<p class="errormsg">يرجى تحميل صورة بتنسيق jpg أو png أو gif  </p>');
         $('#inputInvoice').val(''); // Clear the input field
         return false; // Prevent form submission
     } else {
@@ -101,7 +114,7 @@ function validateInvoiceNumber() {
     const invNumber = $('#inv-number').val();
 
     if (invNumber.length < 2) {
-        $('#inv-number-err').html('<p class="errormsg">Please enter a valid invoice number</p>');
+        $('#inv-number-err').html('<p class="errormsg">يرجى إدخال رقم فاتورة صالح  </p>');
         document.getElementById('inv-number').focus();
         return false;
     } else {

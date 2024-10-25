@@ -81,13 +81,13 @@ if(isset($_REQUEST['btnadd'])){
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <title>Alyoum - Thank You</title>
+    <link rel="stylesheet" href="../assets/css/style-rtl.css">
+    <link rel="stylesheet" href="../assets/css/responsive-rtl.css">
 </head>
 <body class="signin">
 <div class="outer-wraper">
@@ -97,17 +97,18 @@ if(isset($_REQUEST['btnadd'])){
         <div class="welcome text-black fontsize15 d-flex flex-column">
        
                 <div class="thanks-wraper">
-                    <h2 class="text-bold">THANK YOU <span>FOR YOUR
-                    PARTICIPATION!</span></h2>
-                    <p class="text-center text-white">Your entry is under verification. Your chances in Alyoum Raffle draw will be updated on your dashboard within 3 - 4 working days
- </p>
- <a href="dashboard.php" class="btn btn-standard backto text-bold">Go Back to Dashboard</a>
+                    <h2 class="text-bold">شكراً لمشاركتك</h2>
+                    <p class="text-center text-white">مشاركتك قيد التحقق
+ستتم تحديث فرصك في سحب "اليوم
+ على لوحة التحكم الخاصة بك خلال
+ أيام عمل <span class="english">3-4</span></p>
+ <a href="dashboard.php" class="btn btn-standard backto text-bold">ارجع إلى لوحة التحكم</a>
                 </div>
         </div>
         <div class="signinfooter">
                 <img src="../assets/images/sign-in-bg.webp" alt="" class="img-fluid">
                 <div class="termsspl">
-                    <p class="termsClick text-white">Terms & Conditions Apply </p>
+                    <p class="termsClick text-white">تطبق الشروط والأحكام </p>
                 </div>
             </div>
     

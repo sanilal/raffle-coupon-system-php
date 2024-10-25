@@ -109,7 +109,10 @@ $pr_res=mysqli_fetch_object(mysqli_query($url,"select * from `".TB_pre."golden_w
                         <td><?php echo $res['start_date']; ?></td>
                         <td><?php echo $res['end_date']; ?></td>
                         <td><?php echo $res['prize_multiplication']; ?></td>
-                        <td><?php echo $res['notification']; ?></td>
+                        <td>
+                          <?php echo $res['notification']; ?>
+                          <?php echo $res['notification_arabic']; ?>
+                      </td>
                         
 <td>
 <a href="goldenweek.php?gwid=<?php echo $res['id']; ?>" class="btn btn-primary" title="Edit">View</a>

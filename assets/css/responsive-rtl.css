@@ -17,7 +17,7 @@
         font-size: 14px !important;
     }
     .ticket-text h2 {
-        max-width: 170px;
+        max-width: 100%;
     }
     .ticket-number {
         font-size: 4rem;
@@ -43,6 +43,7 @@
     .dashboard-main-tabs ul li {
         line-height: 1.25rem;
     }
+    
 }
 
 
@@ -209,6 +210,9 @@
     
     .retailers a {
         width: 140px;
+    }
+    .dashboard-main-tabs ul {
+        width: 280px;
     }
     
 }

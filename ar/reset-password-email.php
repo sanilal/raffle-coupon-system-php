@@ -39,7 +39,7 @@ $resetEmail = '<!doctype html>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td><h2 style="color: #006a38; font-size: 26px;">RESET YOUR PASSWORD</h2></td>
+                                    <td><h2 style="color: #006a38; font-size: 26px;">أعد تعيين كلمة المرور الخاصة بك  </h2></td>
                                 </tr>
                                 
                                 <tr>
@@ -47,8 +47,8 @@ $resetEmail = '<!doctype html>
                                 </tr>
                                 <tr dir="ltr">
                                     <td>
-                                        <p>Dear ' . $fullName . ',</p>
-                                        <p>We\'re sending you this email because you requested a password reset. Click on this link to create a new password:</p>
+                                        <p>عزيزي/عزيزتي   ' . $fullName . ',</p>
+                                        <p>نرسل لك هذا البريد الإلكتروني لأنك طلبت إعادة تعيين كلمة المرور. انقر على هذا الرابط لإنشاء كلمة مرور جديدة:  </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +68,7 @@ $resetEmail = '<!doctype html>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p>Or copy and paste the URL into your browser:</p>
+                                        <p>أو انسخ الرابط والصقه في متصفحك:  </p>
                                         <p>' . $reset_link . '</p>
                                     </td>
                                 </tr>
@@ -77,8 +77,8 @@ $resetEmail = '<!doctype html>
                                 </tr>
                                 <tr dir="ltr">
                                     <td>
-                                        <p>If you didn\'t request a password reset, you can ignore this email. Your password will not be changed.</p><br>
-                                        <p>Warm regards,<br>On Behalf of ALYOUM</p>
+                                        <p>إذا لم تطلب إعادة تعيين كلمة المرور، يمكنك تجاهل هذا البريد الإلكتروني. لن يتم تغيير كلمة مرورك.  </p><br>
+                                        <p>أطيب التحيات،<br>بالنيابة عن "اليوم"</p>
                                     </td>
                                 </tr>
                                 <tr>

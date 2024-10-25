@@ -195,6 +195,12 @@ $selected_users = explode(',', $pr_res->applicable_users); // Convert comma-sepa
 
 						  
 						</div>
+            <div class="form-group col-md-12 m-r-0" style="margin-left: 0;">
+            <label>Arabic Notification</label>
+            <textarea class="form-control" placeholder="Enter Notification" name="arabicnotification" id="arabicnotification" disabled><?php echo htmlspecialchars($pr_res->message_arabic); ?></textarea>
+
+						  
+						</div>
            
 					  </div>
             <div class="row">
@@ -245,7 +251,7 @@ $selected_users = explode(',', $pr_res->applicable_users); // Convert comma-sepa
 $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('notification');
+    // CKEDITOR.replace('notification');
   });
 
 	$(document).ready(function(){
